@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub - Premium Edition</title>
+    <title>Roxy Hub - Premium Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #000;
-            /* Anime kızı arka planı */
+            /* Arka plan resmi */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
             background-size: cover;
             background-position: center;
@@ -21,6 +21,7 @@
             overflow-x: hidden;
         }
 
+        /* Giriş Ekranı */
         .hero {
             height: 100vh;
             display: flex;
@@ -30,7 +31,7 @@
             text-align: center;
         }
 
-        /* İSTEDİĞİN SİYAH-BEYAZ GEÇİŞLİ BAŞLIK */
+        /* Parlayan Siyah-Beyaz Başlık */
         .title {
             font-family: 'Oswald', sans-serif;
             font-size: 7em;
@@ -41,7 +42,6 @@
             background-size: 200% auto;
             color: #fff;
             background-clip: text;
-            text-fill-color: transparent;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shine 3s linear infinite;
@@ -63,7 +63,6 @@
             letter-spacing: 3px;
             transition: 0.5s;
             backdrop-filter: blur(5px);
-            border-radius: 0;
         }
 
         .view-btn:hover {
@@ -72,6 +71,7 @@
             transform: scale(1.05);
         }
 
+        /* İçerik Konteynırı */
         .container {
             max-width: 900px;
             margin: 0 auto 100px auto;
@@ -79,23 +79,65 @@
             background: rgba(0, 0, 0, 0.95);
             border: 1px solid #111;
             text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Status (Durum) Paneli */
+        .status-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 25px;
+            border: 1px solid #222;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .working { 
+            background-color: #00ff00; 
+            box-shadow: 0 0 10px #00ff00; 
+        }
+
+        .down { 
+            background-color: #ff0000; 
+            box-shadow: 0 0 10px #ff0000; 
+        }
+
+        .status-text {
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         .section-title {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 2.2em;
+            margin-bottom: 20px;
             letter-spacing: 5px;
             text-transform: uppercase;
-            border-bottom: 2px solid #fff;
-            display: inline-block;
-            padding-bottom: 10px;
         }
 
+        /* Script Kutusu */
         .code-block {
             background-color: #050505;
             border: 1px solid #222;
-            padding: 30px;
-            border-radius: 4px;
+            padding: 35px;
+            border-radius: 5px;
             text-align: left;
             position: relative;
         }
@@ -110,6 +152,11 @@
             padding: 10px 25px;
             font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .code-block button:hover {
+            background-color: #ccc;
         }
 
         pre {
@@ -117,10 +164,11 @@
             font-family: 'Consolas', monospace;
             overflow-x: auto;
             font-size: 1.1em;
+            margin: 0;
         }
 
         footer {
-            padding: 40px;
+            padding: 50px;
             text-align: center;
             color: #333;
             font-size: 0.8em;
@@ -136,19 +184,29 @@
     </div>
 
     <div class="container" id="products">
+        
+        <div class="status-container">
+            <div class="status-item">
+                <span class="dot working"></span>
+                <span class="status-text">ROXY HUB: <span style="color: #00ff00;">WORKING</span></span>
+            </div>
+            <div class="status-item">
+                <span class="dot down"></span>
+                <span class="status-text">ROXYSPLOIT: <span style="color: #ff0000;">DOWN</span></span>
+            </div>
+        </div>
+
         <h2 class="section-title">Get Script</h2>
-        <p style="color: #444; margin-bottom: 40px;">Siyah & Beyaz Minimalist Script Arayüzü</p>
+        <p style="color: #444; margin-bottom: 30px;">Siyah & Beyaz Premium Script Arayüzü</p>
         
         <div class="code-block">
             <button onclick="copyCode(this)">Kopyala</button>
-            <pre id="myCode">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/RoxyHub/main/script.lua"))()
-            </pre>
+            <pre id="myCode">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/RoxyHub/main/script.lua"))()</pre>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 ROXY HUB / MONOCHROME
+        &copy; 2026 ROXY HUB / EST. 2026
     </footer>
 
     <script>
