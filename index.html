@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub - Ürünler</title>
+    <title>Roxy Hub - Premium Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #000;
-            /* Arka plana attığın anime kızını ekliyoruz ve siyah-beyaz yapıyoruz */
+            /* Anime kızı arka planı */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
             background-size: cover;
             background-position: center;
@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* Giriş Ekranı (Sadece Başlık ve Buton) */
         .hero {
             height: 100vh;
             display: flex;
@@ -31,20 +30,31 @@
             text-align: center;
         }
 
+        /* İSTEDİĞİN SİYAH-BEYAZ GEÇİŞLİ BAŞLIK */
         .title {
             font-family: 'Oswald', sans-serif;
             font-size: 7em;
             text-transform: uppercase;
             letter-spacing: 20px;
             margin: 0;
+            background: linear-gradient(90deg, #000, #fff, #000);
+            background-size: 200% auto;
             color: #fff;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
         .view-btn {
             margin-top: 50px;
             padding: 20px 60px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
             color: white;
             border: 2px solid white;
             font-weight: bold;
@@ -53,24 +63,22 @@
             letter-spacing: 3px;
             transition: 0.5s;
             backdrop-filter: blur(5px);
+            border-radius: 0;
         }
 
         .view-btn:hover {
             background-color: white;
             color: black;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
-        /* Ürünler / Script Kısmı */
         .container {
             max-width: 900px;
             margin: 0 auto 100px auto;
             padding: 60px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #222;
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid #111;
             text-align: center;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
         }
 
         .section-title {
@@ -78,13 +86,16 @@
             margin-bottom: 30px;
             letter-spacing: 5px;
             text-transform: uppercase;
+            border-bottom: 2px solid #fff;
+            display: inline-block;
+            padding-bottom: 10px;
         }
 
         .code-block {
             background-color: #050505;
-            border: 1px solid #333;
+            border: 1px solid #222;
             padding: 30px;
-            border-radius: 12px;
+            border-radius: 4px;
             text-align: left;
             position: relative;
         }
@@ -99,15 +110,10 @@
             padding: 10px 25px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .code-block button:hover {
-            background-color: #888;
         }
 
         pre {
-            color: #fff;
+            color: #888;
             font-family: 'Consolas', monospace;
             overflow-x: auto;
             font-size: 1.1em;
@@ -116,9 +122,9 @@
         footer {
             padding: 40px;
             text-align: center;
-            color: #444;
-            font-size: 0.9em;
-            letter-spacing: 3px;
+            color: #333;
+            font-size: 0.8em;
+            letter-spacing: 5px;
         }
     </style>
 </head>
@@ -130,8 +136,8 @@
     </div>
 
     <div class="container" id="products">
-        <h2 class="section-title">Ürünler / Scriptler</h2>
-        <p style="color: #777; margin-bottom: 40px;">En güncel ve güvenilir scriptler aşağıda listelenmiştir.</p>
+        <h2 class="section-title">Get Script</h2>
+        <p style="color: #444; margin-bottom: 40px;">Siyah & Beyaz Minimalist Script Arayüzü</p>
         
         <div class="code-block">
             <button onclick="copyCode(this)">Kopyala</button>
@@ -142,7 +148,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/RoxyHub/main/
     </div>
 
     <footer>
-        &copy; 2026 ROXY HUB - DESIGNED FOR PERFORMANCE
+        &copy; 2026 ROXY HUB / MONOCHROME
     </footer>
 
     <script>
