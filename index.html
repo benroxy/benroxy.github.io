@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub - Premium Hub</title>
+    <title>Roxy Hub - Always Free</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #000;
-            /* Arka plan resmi */
+            /* Arka plan görseli */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
             background-size: cover;
             background-position: center;
@@ -31,7 +31,7 @@
             text-align: center;
         }
 
-        /* Parlayan Siyah-Beyaz Başlık */
+        /* Parlayan Siyah-Beyaz Başlık Efekti */
         .title {
             font-family: 'Oswald', sans-serif;
             font-size: 7em;
@@ -71,7 +71,7 @@
             transform: scale(1.05);
         }
 
-        /* İçerik Konteynırı */
+        /* Ana İçerik Kutusu */
         .container {
             max-width: 900px;
             margin: 0 auto 100px auto;
@@ -80,6 +80,7 @@
             border: 1px solid #111;
             text-align: center;
             border-radius: 10px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
         /* Status (Durum) Paneli */
@@ -110,29 +111,29 @@
             display: inline-block;
         }
 
-        .working { 
-            background-color: #00ff00; 
-            box-shadow: 0 0 10px #00ff00; 
-        }
+        .working { background-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+        .down { background-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
 
-        .down { 
-            background-color: #ff0000; 
-            box-shadow: 0 0 10px #ff0000; 
-        }
-
-        .status-text {
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+        .status-text { font-weight: bold; text-transform: uppercase; }
 
         .section-title {
             font-size: 2.2em;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             letter-spacing: 5px;
             text-transform: uppercase;
         }
 
-        /* Script Kutusu */
+        /* Senin İstediğin Yeni Slogan */
+        .slogan {
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        /* Script Kopyalama Alanı */
         .code-block {
             background-color: #050505;
             border: 1px solid #222;
@@ -197,7 +198,7 @@
         </div>
 
         <h2 class="section-title">Get Script</h2>
-        <p style="color: #444; margin-bottom: 30px;">Siyah & Beyaz Premium Script Arayüzü</p>
+        <p class="slogan">ROXY HUB ALWAYS FREE AND KEYLESS</p>
         
         <div class="code-block">
             <button onclick="copyCode(this)">Kopyala</button>
@@ -223,7 +224,7 @@
                     buttonElement.textContent = 'Kopyala';
                 }, 2000);
             } catch (err) {
-                alert('Hata!');
+                alert('Kopyalanamadı!');
             }
             window.getSelection().removeAllRanges();
         }
