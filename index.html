@@ -6,18 +6,18 @@
     <title>Roxy Hub - Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* YENİ MODERN İMLEÇ */
-        html, body {
+        /* ÖZEL İMLEÇ AYARI */
+        * {
+            /* Burası tüm sitede imleci siyah-beyaz elmas/nokta tarzı yapar */
+            cursor: url('https://cur.cursors-4u.net/others/oth-10/oth938.cur'), auto !important;
+        }
+
+        body {
             margin: 0; padding: 0; background-color: #000;
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
             background-size: cover; background-position: center; background-attachment: fixed;
             color: #ffffff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; overflow-x: hidden;
-            /* Modern, siyah şık imleç */
-            cursor: default;
         }
-
-        /* Tıklanabilir alanlarda imleç */
-        button, a, .ai-opt, #ai-btn { cursor: pointer !important; }
 
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         
@@ -40,59 +40,45 @@
             background: rgba(0, 0, 0, 0.9); border: 1px solid #111; text-align: center; border-radius: 20px;
         }
 
-        /* STATUS */
         .status-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; }
         .status-item { background: #080808; padding: 12px 25px; border: 1px solid #1a1a1a; border-radius: 8px; display: flex; align-items: center; gap: 10px; font-size: 0.8em; letter-spacing: 1px; }
         .dot { height: 8px; width: 8px; border-radius: 50%; }
         .working { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
         .down { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
 
-        /* SCRIPT KOPYALAMA ALANI (YENİ DÜZEN) */
         .script-box {
             background: #050505; border: 1px solid #1a1a1a; border-radius: 12px; padding: 0;
             text-align: left; position: relative; overflow: hidden; margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .script-header {
             background: #0f0f0f; padding: 12px 20px; display: flex; justify-content: space-between;
             align-items: center; border-bottom: 1px solid #1a1a1a;
         }
-        .script-header span { font-size: 0.7em; color: #555; font-weight: bold; letter-spacing: 2px; }
-        
-        .copy-btn {
-            background: #fff; color: #000; border: none; padding: 6px 15px;
-            border-radius: 4px; font-size: 0.75em; font-weight: bold; transition: 0.3s;
-        }
-        .copy-btn:hover { background: #ccc; transform: scale(1.05); }
+        .copy-btn { background: #fff; color: #000; border: none; padding: 6px 15px; border-radius: 4px; font-size: 0.75em; font-weight: bold; }
 
-        .script-content { padding: 25px; overflow-x: auto; }
-        pre {
-            margin: 0; color: #aaa; font-family: 'Fira Code', monospace; font-size: 0.95em;
-            line-height: 1.6; white-space: pre-wrap; word-break: break-all;
-        }
+        .script-content { padding: 25px; }
+        pre { margin: 0; color: #aaa; font-family: 'Fira Code', monospace; font-size: 0.95em; line-height: 1.6; white-space: pre-wrap; }
 
-        .slogan { color: #444; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px; font-size: 0.8em; }
-
-        /* POWER AI */
         #ai-btn {
             position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; border-radius: 50%;
             background-image: url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/ai-icon.jpg');
-            background-size: cover; border: 2px solid #fff; z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            background-size: cover; border: 2px solid #fff; z-index: 1000;
         }
         #ai-window {
             position: fixed; bottom: 110px; right: 30px; width: 320px; background: #0a0a0a;
             border: 1px solid #333; border-radius: 15px; display: none; flex-direction: column; z-index: 1000; overflow: hidden;
         }
-        .ai-header { background: #fff; color: #000; padding: 15px; font-weight: bold; text-align: center; font-size: 0.9em; }
+        .ai-header { background: #fff; color: #000; padding: 15px; font-weight: bold; text-align: center; }
         .ai-content { padding: 20px; height: 200px; overflow-y: auto; font-size: 0.9em; color: #aaa; }
         .ai-options { padding: 10px; display: flex; flex-direction: column; gap: 5px; background: #080808; }
-        .ai-opt { background: #111; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 5px; text-align: left; font-size: 0.8em; }
-        .ai-opt:hover { background: #fff; color: #000; }
+        .ai-opt { background: #111; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 5px; text-align: left; }
 
         footer { padding: 50px; text-align: center; color: #222; font-size: 0.7em; letter-spacing: 5px; }
     </style>
 </head>
-<body>
+<body onclick="playClick()">
+
+    <audio id="clickSound" src="https://www.soundjay.com/buttons/button-16.mp3" preload="auto"></audio>
 
     <div class="hero">
         <h1 class="title">Roxy Hub</h1>
@@ -106,11 +92,11 @@
         </div>
 
         <h2 style="letter-spacing: 5px; text-transform: uppercase; margin:0;">Ana Script</h2>
-        <p class="slogan">ALWAYS FREE AND KEYLESS</p>
+        <p style="color:#444; font-size:0.8em; font-weight:bold; letter-spacing:2px;">ALWAYS FREE AND KEYLESS</p>
         
         <div class="script-box">
             <div class="script-header">
-                <span>LUA EXECUTOR READY</span>
+                <span style="font-size: 0.7em; color:#555;">LUA EXECUTOR READY</span>
                 <button class="copy-btn" onclick="copyCode(this)">KOPYALA</button>
             </div>
             <div class="script-content">
@@ -133,10 +119,18 @@
     <footer>&copy; 2026 ROXY HUB / EST. 2026</footer>
 
     <script>
+        // TIKLAMA SESİ FONKSİYONU
+        function playClick() {
+            var audio = document.getElementById("clickSound");
+            audio.currentTime = 0;
+            audio.play();
+        }
+
         function toggleAI() {
             var win = document.getElementById('ai-window');
             win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
         }
+
         function askPower(q) {
             var text = document.getElementById('ai-text');
             var a = q === 'Roxy Hub Güvenli mi?' ? "Kesinlikle güvenli! Tüm kodlarımızı kendimiz hazırlıyoruz." : 
@@ -144,6 +138,7 @@
                     "Hayır, Roxy Hub her zaman KEYLESS kalacak!";
             text.innerHTML = "<b>Sen:</b> "+q+"<br><br><b>Power:</b> "+a;
         }
+
         function copyCode(btn) {
             const pre = document.getElementById('myCode');
             const range = document.createRange();
