@@ -6,7 +6,8 @@
     <title>Roxy Hub - Always Free</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* ÖZEL İMLEÇ (CUSTOM CURSOR) AYARI */
+        html, body {
             margin: 0;
             padding: 0;
             background-color: #000;
@@ -18,6 +19,13 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            /* Burası imleci değiştirir: Crosshair temaya çok uygundur */
+            cursor: crosshair; 
+        }
+
+        /* Tıklanabilir alanlarda imleç el işaretine dönsün */
+        button, a, .ai-opt, #ai-btn {
+            cursor: pointer !important;
         }
 
         .hero {
@@ -56,7 +64,6 @@
             border: 2px solid white;
             font-weight: bold;
             text-transform: uppercase;
-            cursor: pointer;
             letter-spacing: 3px;
             transition: 0.5s;
             backdrop-filter: blur(5px);
@@ -145,7 +152,6 @@
             border: none;
             padding: 10px 25px;
             font-weight: bold;
-            cursor: pointer;
             transition: 0.3s;
         }
 
@@ -167,7 +173,7 @@
             width: 70px; height: 70px; border-radius: 50%;
             background-image: url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/ai-icon.jpg');
             background-size: cover; border: 2px solid #fff;
-            cursor: pointer; z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.3);
+            z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
         #ai-window {
             position: fixed; bottom: 110px; right: 30px; width: 320px;
@@ -176,9 +182,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         .ai-header { background: #fff; color: #000; padding: 15px; font-weight: bold; text-align: center; }
-        .ai-content { padding: 20px; height: 250px; overflow-y: auto; font-size: 0.95em; color: #ccc; }
+        .ai-content { padding: 20px; height: 250px; overflow-y: auto; font-size: 0.95em; color: #ccc; cursor: default; }
         .ai-options { padding: 10px; display: flex; flex-direction: column; gap: 5px; background: #111; }
-        .ai-opt { background: #222; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.85em; }
+        .ai-opt { background: #222; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; text-align: left; font-size: 0.85em; }
         .ai-opt:hover { background: #fff; color: #000; }
 
         footer {
@@ -257,18 +263,11 @@
             range.selectNode(codeBlock);
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
-            try {
-                document.execCommand('copy');
-                buttonElement.textContent = 'Kopyalandı';
-                setTimeout(() => {
-                    buttonElement.textContent = 'Kopyala';
-                }, 2000);
-            } catch (err) {
-                alert('Kopyalanamadı!');
-            }
+            document.execCommand('copy');
+            buttonElement.textContent = 'Kopyalandı';
+            setTimeout(() => { buttonElement.textContent = 'Kopyala'; }, 2000);
             window.getSelection().removeAllRanges();
         }
     </script>
-
 </body>
 </html>
