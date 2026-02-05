@@ -10,7 +10,6 @@
             margin: 0;
             padding: 0;
             background-color: #000;
-            /* Arka plan görseli */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
             background-size: cover;
             background-position: center;
@@ -21,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* Giriş Ekranı */
         .hero {
             height: 100vh;
             display: flex;
@@ -31,7 +29,6 @@
             text-align: center;
         }
 
-        /* Parlayan Siyah-Beyaz Başlık Efekti */
         .title {
             font-family: 'Oswald', sans-serif;
             font-size: 7em;
@@ -71,7 +68,6 @@
             transform: scale(1.05);
         }
 
-        /* Ana İçerik Kutusu */
         .container {
             max-width: 900px;
             margin: 0 auto 100px auto;
@@ -83,7 +79,6 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
-        /* Status (Durum) Paneli */
         .status-container {
             display: flex;
             justify-content: center;
@@ -123,7 +118,6 @@
             text-transform: uppercase;
         }
 
-        /* Senin İstediğin Yeni Slogan */
         .slogan {
             color: #666;
             margin-bottom: 30px;
@@ -133,7 +127,6 @@
             font-size: 0.9em;
         }
 
-        /* Script Kopyalama Alanı */
         .code-block {
             background-color: #050505;
             border: 1px solid #222;
@@ -168,6 +161,26 @@
             margin: 0;
         }
 
+        /* --- POWER AI STİLLERİ --- */
+        #ai-btn {
+            position: fixed; bottom: 30px; right: 30px; 
+            width: 70px; height: 70px; border-radius: 50%;
+            background-image: url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/ai-icon.jpg');
+            background-size: cover; border: 2px solid #fff;
+            cursor: pointer; z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+        #ai-window {
+            position: fixed; bottom: 110px; right: 30px; width: 320px;
+            background: #0a0a0a; border: 1px solid #333; border-radius: 15px;
+            display: none; flex-direction: column; z-index: 1000; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .ai-header { background: #fff; color: #000; padding: 15px; font-weight: bold; text-align: center; }
+        .ai-content { padding: 20px; height: 250px; overflow-y: auto; font-size: 0.95em; color: #ccc; }
+        .ai-options { padding: 10px; display: flex; flex-direction: column; gap: 5px; background: #111; }
+        .ai-opt { background: #222; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.85em; }
+        .ai-opt:hover { background: #fff; color: #000; }
+
         footer {
             padding: 50px;
             text-align: center;
@@ -185,15 +198,14 @@
     </div>
 
     <div class="container" id="products">
-        
         <div class="status-container">
             <div class="status-item">
                 <span class="dot working"></span>
-                <span class="status-text">ROXY HUB: <span style="color: #00ff00;">WORKING</span></span>
+                <span class="status-text">ROXY HUB: <span style="color: #00ff00;">ÇALIŞIYOR</span></span>
             </div>
             <div class="status-item">
                 <span class="dot down"></span>
-                <span class="status-text">ROXYSPLOIT: <span style="color: #ff0000;">DOWN</span></span>
+                <span class="status-text">ROXYSPLOIT: <span style="color: #ff0000;">KAPALI</span></span>
             </div>
         </div>
 
@@ -206,11 +218,39 @@
         </div>
     </div>
 
+    <div id="ai-btn" onclick="toggleAI()"></div>
+    <div id="ai-window">
+        <div class="ai-header">ROXY POWER YARDIMCI</div>
+        <div class="ai-content" id="ai-text">
+            Selam! Ben Power. Sana nasıl yardımcı olabilirim? Merak ettiğin her şeyi sorabilirsin.
+        </div>
+        <div class="ai-options">
+            <button class="ai-opt" onclick="askPower('Roxy Hub Güvenli mi?')">Roxy Hub Güvenli mi?</button>
+            <button class="ai-opt" onclick="askPower('Nasıl Execute Edilir?')">Nasıl Execute Edilir?</button>
+            <button class="ai-opt" onclick="askPower('Key İstiyor mu?')">Key İstiyor mu?</button>
+        </div>
+    </div>
+
     <footer>
         &copy; 2026 ROXY HUB / EST. 2026
     </footer>
 
     <script>
+        function toggleAI() {
+            var win = document.getElementById('ai-window');
+            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function askPower(q) {
+            var text = document.getElementById('ai-text');
+            var a = "";
+            if(q === 'Roxy Hub Güvenli mi?') a = "Kesinlikle! Tüm scriptlerimiz test edilip sisteme yükleniyor. Gönül rahatlığıyla kullanabilirsin.";
+            if(q === 'Nasıl Execute Edilir?') a = "Kodu kopyala, Executor'ını aç ve yapıştır. Sonra 'Execute' butonuna bas, Roxy Power anında aktif olacak!";
+            if(q === 'Key İstiyor mu?') a = "Hayır dostum, Roxy Hub daima ücretsiz ve KEYLESS (anahtarsız) kalacak. Gücün tadını çıkar!";
+            
+            text.innerHTML = "<b>Sen:</b> " + q + "<br><br><b>Power:</b> " + a;
+        }
+
         function copyCode(buttonElement) {
             const codeBlock = buttonElement.parentNode.querySelector('pre');
             const range = document.createRange();
