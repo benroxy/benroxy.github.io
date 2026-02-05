@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub - Power Edition</title>
+    <title>Roxy Hub - Beach Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Russo+One&family=Inter:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* İMLEÇLER */
@@ -66,7 +66,7 @@
         .script-header { background: #080808; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #151515; }
         .copy-btn { background: #fff; color: #000; border: none; padding: 10px 25px; border-radius: 6px; font-weight: 900; }
 
-        /* ROXY POWER AI STİLLERİ */
+        /* POWER AI */
         #ai-btn {
             position: fixed; bottom: 35px; right: 35px; width: 80px; height: 80px; border-radius: 50%;
             background-image: url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/ai-icon.jpg');
@@ -92,7 +92,7 @@
 <body>
 
     <audio id="bgMusic" loop muted>
-        <source src="Roi (Retake) - Official Lyric Video.mp3" type="audio/mpeg">
+        <source src="Imagine Dragons - Take Me To The Beach (feat. Ado) (Official Lyric Video) [5Duje_sZko8].mp3" type="audio/mpeg">
     </audio>
 
     <div id="music-panel">
@@ -128,13 +128,13 @@
         <div class="ai-header">Roxy Power</div>
         <div class="ai-content" id="ai-text">
             Selam kanka! Ben Power. Roxy Hub'ın koruyucusu ve senin asistanınım. <br><br>
-            Bugün her şey <b>GÜÇLÜ</b> görünüyor! Merak ettiğin bir şey mi var?
+            <b>Take Me To The Beach</b> çalıyor! Ortam tam tatillik oldu ama biz scriptlere devam ediyoruz kanka!
         </div>
         <div class="ai-options">
             <button class="ai-opt" onclick="askPower('Roxy Hub Güvenli mi?')">🛡️ Güvenli mi?</button>
             <button class="ai-opt" onclick="askPower('Nasıl Execute Edilir?')">⚡ Nasıl çalıştırılır?</button>
             <button class="ai-opt" onclick="askPower('Key İstiyor mu?')">🔑 Key var mı?</button>
-            <button class="ai-opt" onclick="askPower('Müzik Nereden Açılır?')">🎵 Müzik gelmiyor?</button>
+            <button class="ai-opt" onclick="askPower('Müzik Nereden Açılır?')">🎵 Ses gelmiyor?</button>
         </div>
     </div>
 
@@ -145,7 +145,7 @@
         const muteBtn = document.getElementById('mute-btn');
 
         function startExperience() {
-            music.play().catch(e => console.log("Ses için etkileşim lazım."));
+            music.play().catch(e => console.log("Müzik için etkileşim bekleniyor."));
             document.getElementById('products').scrollIntoView();
         }
 
@@ -177,20 +177,14 @@
             win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        // POWER CEVAPLARI - GÜÇLENDİRİLDİ
         function askPower(q) {
             var text = document.getElementById('ai-text');
             var a = "";
             
-            if(q === 'Roxy Hub Güvenli mi?') {
-                a = "Tabii ki! Ben buradayken hiçbir zararlı yazılım bu Hub'a giremez. Tüm scriptler test edildi kanka, rahat ol!";
-            } else if(q === 'Nasıl Execute Edilir?') {
-                a = "Yukarıdaki kodu kopyala, kullandığın executor'a (Wave, Solara vb.) yapıştır ve 'Execute' butonuna bas. Güç parmaklarının ucunda!";
-            } else if(q === 'Key İstiyor mu?') {
-                a = "Asla! Roxy Hub her zaman Keyless ve ücretsiz kalacak. Bizde vakit nakittir kanka!";
-            } else if(q === 'Müzik Nereden Açılır?') {
-                a = "Sol alt köşedeki ses paneline bak kanka. Başlangıçta sessiz açtım ki kafa şişmesin. 🔇 ikonuna basarsan Roi (Retake) başlar!";
-            }
+            if(q === 'Roxy Hub Güvenli mi?') a = "Kesinlikle! Ben buradayken virüs falan barınamaz kanka!";
+            else if(q === 'Nasıl Execute Edilir?') a = "Kodu kopyala, executor'ına yapıştır ve Execute'a bas. Bam!";
+            else if(q === 'Key İstiyor mu?') a = "Hayır kanka, Roxy Hub her zaman Keyless!";
+            else if(q === 'Müzik Nereden Açılır?') a = "Sol alt köşedeki 🔇 ikonuna tıkla, kumsal havası hemen başlasın!";
 
             text.innerHTML = "<b>Sen:</b> "+q+"<br><br><b>Power:</b> "+a;
         }
