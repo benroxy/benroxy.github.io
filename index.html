@@ -3,197 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub - Always Free</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <title>Roxy Hub - Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* ÖZEL İMLEÇ (CUSTOM CURSOR) AYARI */
+        /* YENİ MODERN İMLEÇ */
         html, body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
+            margin: 0; padding: 0; background-color: #000;
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            /* Burası imleci değiştirir: Crosshair temaya çok uygundur */
-            cursor: crosshair; 
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #ffffff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; overflow-x: hidden;
+            /* Modern, siyah şık imleç */
+            cursor: default;
         }
 
-        /* Tıklanabilir alanlarda imleç el işaretine dönsün */
-        button, a, .ai-opt, #ai-btn {
-            cursor: pointer !important;
-        }
+        /* Tıklanabilir alanlarda imleç */
+        button, a, .ai-opt, #ai-btn { cursor: pointer !important; }
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        
         .title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 7em;
-            text-transform: uppercase;
-            letter-spacing: 20px;
-            margin: 0;
-            background: linear-gradient(90deg, #000, #fff, #000);
-            background-size: 200% auto;
-            color: #fff;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Oswald', sans-serif; font-size: 7em; text-transform: uppercase; letter-spacing: 20px; margin: 0;
+            background: linear-gradient(90deg, #000, #fff, #000); background-size: 200% auto;
+            color: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: shine 3s linear infinite;
         }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        @keyframes shine { to { background-position: 200% center; } }
 
         .view-btn {
-            margin-top: 50px;
-            padding: 20px 60px;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: white;
-            border: 2px solid white;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            transition: 0.5s;
-            backdrop-filter: blur(5px);
+            margin-top: 50px; padding: 18px 50px; background: none; color: white; border: 1px solid rgba(255,255,255,0.3);
+            font-weight: bold; text-transform: uppercase; letter-spacing: 3px; transition: 0.4s; backdrop-filter: blur(5px);
         }
-
-        .view-btn:hover {
-            background-color: white;
-            color: black;
-            transform: scale(1.05);
-        }
+        .view-btn:hover { background: white; color: black; border-color: white; transform: translateY(-5px); }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto 100px auto;
-            padding: 60px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid #111;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            max-width: 1000px; margin: 0 auto 100px auto; padding: 60px;
+            background: rgba(0, 0, 0, 0.9); border: 1px solid #111; text-align: center; border-radius: 20px;
         }
 
-        .status-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+        /* STATUS */
+        .status-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; }
+        .status-item { background: #080808; padding: 12px 25px; border: 1px solid #1a1a1a; border-radius: 8px; display: flex; align-items: center; gap: 10px; font-size: 0.8em; letter-spacing: 1px; }
+        .dot { height: 8px; width: 8px; border-radius: 50%; }
+        .working { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+        .down { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+
+        /* SCRIPT KOPYALAMA ALANI (YENİ DÜZEN) */
+        .script-box {
+            background: #050505; border: 1px solid #1a1a1a; border-radius: 12px; padding: 0;
+            text-align: left; position: relative; overflow: hidden; margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
-        .status-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px 25px;
-            border: 1px solid #222;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.85em;
-            letter-spacing: 1px;
+        .script-header {
+            background: #0f0f0f; padding: 12px 20px; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #1a1a1a;
         }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            border-radius: 50%;
-            display: inline-block;
+        .script-header span { font-size: 0.7em; color: #555; font-weight: bold; letter-spacing: 2px; }
+        
+        .copy-btn {
+            background: #fff; color: #000; border: none; padding: 6px 15px;
+            border-radius: 4px; font-size: 0.75em; font-weight: bold; transition: 0.3s;
         }
+        .copy-btn:hover { background: #ccc; transform: scale(1.05); }
 
-        .working { background-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
-        .down { background-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
-
-        .status-text { font-weight: bold; text-transform: uppercase; }
-
-        .section-title {
-            font-size: 2.2em;
-            margin-bottom: 5px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
-
-        .slogan {
-            color: #666;
-            margin-bottom: 30px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.9em;
-        }
-
-        .code-block {
-            background-color: #050505;
-            border: 1px solid #222;
-            padding: 35px;
-            border-radius: 5px;
-            text-align: left;
-            position: relative;
-        }
-
-        .code-block button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 10px 25px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .code-block button:hover {
-            background-color: #ccc;
-        }
-
+        .script-content { padding: 25px; overflow-x: auto; }
         pre {
-            color: #888;
-            font-family: 'Consolas', monospace;
-            overflow-x: auto;
-            font-size: 1.1em;
-            margin: 0;
+            margin: 0; color: #aaa; font-family: 'Fira Code', monospace; font-size: 0.95em;
+            line-height: 1.6; white-space: pre-wrap; word-break: break-all;
         }
 
-        /* --- POWER AI STİLLERİ --- */
+        .slogan { color: #444; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px; font-size: 0.8em; }
+
+        /* POWER AI */
         #ai-btn {
-            position: fixed; bottom: 30px; right: 30px; 
-            width: 70px; height: 70px; border-radius: 50%;
+            position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; border-radius: 50%;
             background-image: url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/ai-icon.jpg');
-            background-size: cover; border: 2px solid #fff;
-            z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.3);
+            background-size: cover; border: 2px solid #fff; z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
         #ai-window {
-            position: fixed; bottom: 110px; right: 30px; width: 320px;
-            background: #0a0a0a; border: 1px solid #333; border-radius: 15px;
-            display: none; flex-direction: column; z-index: 1000; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            position: fixed; bottom: 110px; right: 30px; width: 320px; background: #0a0a0a;
+            border: 1px solid #333; border-radius: 15px; display: none; flex-direction: column; z-index: 1000; overflow: hidden;
         }
-        .ai-header { background: #fff; color: #000; padding: 15px; font-weight: bold; text-align: center; }
-        .ai-content { padding: 20px; height: 250px; overflow-y: auto; font-size: 0.95em; color: #ccc; cursor: default; }
-        .ai-options { padding: 10px; display: flex; flex-direction: column; gap: 5px; background: #111; }
-        .ai-opt { background: #222; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; text-align: left; font-size: 0.85em; }
+        .ai-header { background: #fff; color: #000; padding: 15px; font-weight: bold; text-align: center; font-size: 0.9em; }
+        .ai-content { padding: 20px; height: 200px; overflow-y: auto; font-size: 0.9em; color: #aaa; }
+        .ai-options { padding: 10px; display: flex; flex-direction: column; gap: 5px; background: #080808; }
+        .ai-opt { background: #111; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 5px; text-align: left; font-size: 0.8em; }
         .ai-opt:hover { background: #fff; color: #000; }
 
-        footer {
-            padding: 50px;
-            text-align: center;
-            color: #333;
-            font-size: 0.8em;
-            letter-spacing: 5px;
-        }
+        footer { padding: 50px; text-align: center; color: #222; font-size: 0.7em; letter-spacing: 5px; }
     </style>
 </head>
 <body>
@@ -205,67 +101,58 @@
 
     <div class="container" id="products">
         <div class="status-container">
-            <div class="status-item">
-                <span class="dot working"></span>
-                <span class="status-text">ROXY HUB: <span style="color: #00ff00;">ÇALIŞIYOR</span></span>
-            </div>
-            <div class="status-item">
-                <span class="dot down"></span>
-                <span class="status-text">ROXYSPLOIT: <span style="color: #ff0000;">KAPALI</span></span>
-            </div>
+            <div class="status-item"><span class="dot working"></span><span class="status-text">ROXY HUB: <span style="color:#00ff00">AKTİF</span></span></div>
+            <div class="status-item"><span class="dot down"></span><span class="status-text">ROXYSPLOIT: <span style="color:#ff0000">KAPALI</span></span></div>
         </div>
 
-        <h2 class="section-title">Get Script</h2>
-        <p class="slogan">ROXY HUB ALWAYS FREE AND KEYLESS</p>
+        <h2 style="letter-spacing: 5px; text-transform: uppercase; margin:0;">Ana Script</h2>
+        <p class="slogan">ALWAYS FREE AND KEYLESS</p>
         
-        <div class="code-block">
-            <button onclick="copyCode(this)">Kopyala</button>
-            <pre id="myCode">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/RoxyHub/main/script.lua"))()</pre>
+        <div class="script-box">
+            <div class="script-header">
+                <span>LUA EXECUTOR READY</span>
+                <button class="copy-btn" onclick="copyCode(this)">KOPYALA</button>
+            </div>
+            <div class="script-content">
+                <pre id="myCode">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/RoxyHub/main/script.lua"))()</pre>
+            </div>
         </div>
     </div>
 
     <div id="ai-btn" onclick="toggleAI()"></div>
     <div id="ai-window">
         <div class="ai-header">ROXY POWER YARDIMCI</div>
-        <div class="ai-content" id="ai-text">
-            Selam! Ben Power. Sana nasıl yardımcı olabilirim? Merak ettiğin her şeyi sorabilirsin.
-        </div>
+        <div class="ai-content" id="ai-text">Selam! Ben Power. Sana nasıl yardımcı olabilirim?</div>
         <div class="ai-options">
-            <button class="ai-opt" onclick="askPower('Roxy Hub Güvenli mi?')">Roxy Hub Güvenli mi?</button>
-            <button class="ai-opt" onclick="askPower('Nasıl Execute Edilir?')">Nasıl Execute Edilir?</button>
-            <button class="ai-opt" onclick="askPower('Key İstiyor mu?')">Key İstiyor mu?</button>
+            <button class="ai-opt" onclick="askPower('Roxy Hub Güvenli mi?')">Güvenli mi?</button>
+            <button class="ai-opt" onclick="askPower('Nasıl Execute Edilir?')">Nasıl çalıştırılır?</button>
+            <button class="ai-opt" onclick="askPower('Key İstiyor mu?')">Key var mı?</button>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 ROXY HUB / EST. 2026
-    </footer>
+    <footer>&copy; 2026 ROXY HUB / EST. 2026</footer>
 
     <script>
         function toggleAI() {
             var win = document.getElementById('ai-window');
             win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
         }
-
         function askPower(q) {
             var text = document.getElementById('ai-text');
-            var a = "";
-            if(q === 'Roxy Hub Güvenli mi?') a = "Kesinlikle! Tüm scriptlerimiz test edilip sisteme yükleniyor. Gönül rahatlığıyla kullanabilirsin.";
-            if(q === 'Nasıl Execute Edilir?') a = "Kodu kopyala, Executor'ını aç ve yapıştır. Sonra 'Execute' butonuna bas, Roxy Power anında aktif olacak!";
-            if(q === 'Key İstiyor mu?') a = "Hayır dostum, Roxy Hub daima ücretsiz ve KEYLESS (anahtarsız) kalacak. Gücün tadını çıkar!";
-            
-            text.innerHTML = "<b>Sen:</b> " + q + "<br><br><b>Power:</b> " + a;
+            var a = q === 'Roxy Hub Güvenli mi?' ? "Kesinlikle güvenli! Tüm kodlarımızı kendimiz hazırlıyoruz." : 
+                    q === 'Nasıl Execute Edilir?' ? "Kodu kopyala ve Executor'ına yapıştırıp Execute'a bas!" : 
+                    "Hayır, Roxy Hub her zaman KEYLESS kalacak!";
+            text.innerHTML = "<b>Sen:</b> "+q+"<br><br><b>Power:</b> "+a;
         }
-
-        function copyCode(buttonElement) {
-            const codeBlock = buttonElement.parentNode.querySelector('pre');
+        function copyCode(btn) {
+            const pre = document.getElementById('myCode');
             const range = document.createRange();
-            range.selectNode(codeBlock);
+            range.selectNode(pre);
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
             document.execCommand('copy');
-            buttonElement.textContent = 'Kopyalandı';
-            setTimeout(() => { buttonElement.textContent = 'Kopyala'; }, 2000);
+            btn.textContent = 'KOPYALANDI';
+            setTimeout(() => { btn.textContent = 'KOPYALA'; }, 2000);
             window.getSelection().removeAllRanges();
         }
     </script>
