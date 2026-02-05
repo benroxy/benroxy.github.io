@@ -3,108 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub - Premium</title>
+    <title>Roxy Hub - Ultimate Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Russo+One&family=Inter:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* İMLEÇ BURADA - GARANTİ YÖNTEM */
-        html, body, * {
-            /* Siyah modern bir ok imleci */
-            cursor: url('https://cur.cursors-4u.net/others/oth-10/oth938.cur'), default !important;
-        }
-
-        /* Tıklanabilir her şey için elmas imleç */
-        button, a, .ai-opt, #ai-btn, .copy-btn, [onclick] {
-            cursor: url('https://cur.cursors-4u.net/others/oth-10/oth937.cur'), pointer !important;
-        }
+        /* İMLEÇLER */
+        html, body, * { cursor: url('https://cur.cursors-4u.net/others/oth-10/oth938.cur'), default !important; }
+        button, a, .ai-opt, #ai-btn, .copy-btn, [onclick] { cursor: url('https://cur.cursors-4u.net/others/oth-10/oth937.cur'), pointer !important; }
 
         body {
             margin: 0; padding: 0; background-color: #000;
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/anime-kizi.jpg'); 
             background-size: cover; background-position: center; background-attachment: fixed;
             color: #ffffff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; overflow-x: hidden;
         }
 
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        /* GİRİŞ ANİMASYONU */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; perspective: 1000px; }
         
         .title {
-            font-family: 'Syncopate', sans-serif; font-size: 6em; text-transform: uppercase; letter-spacing: 20px; margin: 0;
+            font-family: 'Syncopate', sans-serif; font-size: 6.5em; text-transform: uppercase; letter-spacing: 25px; margin: 0;
             background: linear-gradient(90deg, #000, #fff, #000); background-size: 200% auto;
             color: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
+            animation: shine 3s linear infinite, fadeInUp 1s ease-out;
+            transition: transform 0.1s ease-out; /* Paralaks için */
         }
         @keyframes shine { to { background-position: 200% center; } }
 
         .view-btn {
-            margin-top: 50px; padding: 18px 50px; background: rgba(255,255,255,0.02); color: white; border: 1px solid rgba(255,255,255,0.2);
-            font-weight: bold; text-transform: uppercase; letter-spacing: 3px; transition: 0.4s; backdrop-filter: blur(10px);
-            border-radius: 5px;
+            margin-top: 50px; padding: 20px 60px; background: rgba(255,255,255,0.02); color: white; border: 1px solid rgba(255,255,255,0.1);
+            font-weight: bold; text-transform: uppercase; letter-spacing: 4px; transition: 0.4s; backdrop-filter: blur(15px);
+            border-radius: 8px; animation: fadeInUp 1.2s ease-out;
         }
-        .view-btn:hover { background: white; color: black; border-color: white; transform: translateY(-5px); }
+        .view-btn:hover { background: white; color: black; box-shadow: 0 0 30px rgba(255,255,255,0.3); transform: translateY(-5px); }
 
         .container {
             max-width: 900px; margin: 0 auto 100px auto; padding: 60px;
-            background: rgba(0, 0, 0, 0.95); border: 1px solid #111; text-align: center; border-radius: 20px;
+            background: rgba(2, 2, 2, 0.98); border: 1px solid #111; text-align: center; border-radius: 25px;
+            box-shadow: 0 0 50px rgba(0,0,0,1); animation: fadeInUp 1.5s ease-out;
         }
 
+        /* NEON STATUS */
         .status-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; }
-        .status-item { background: #080808; padding: 12px 25px; border: 1px solid #1a1a1a; border-radius: 10px; display: flex; align-items: center; gap: 10px; font-size: 0.8em; }
-        .dot { height: 10px; width: 10px; border-radius: 50%; }
-        .working { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
-        .down { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        .status-item { background: #050505; padding: 15px 30px; border: 1px solid #151515; border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 0.8em; letter-spacing: 2px; }
+        .dot { height: 12px; width: 12px; border-radius: 50%; position: relative; }
+        .working { background-color: #00ff00; box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+        .down { background-color: #ff0000; box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
 
         .script-box {
-            background: #050505; border: 1px solid #1a1a1a; border-radius: 15px; text-align: left; position: relative; overflow: hidden; margin-top: 25px;
+            background: #020202; border: 1px solid #1a1a1a; border-radius: 18px; text-align: left; position: relative; overflow: hidden; margin-top: 25px;
         }
         .script-header {
-            background: #0f0f0f; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a1a1a;
+            background: #080808; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #151515;
         }
         .copy-btn {
-            background: #fff; color: #000; border: none; padding: 8px 20px; border-radius: 5px; font-size: 0.75em; font-weight: bold; transition: 0.3s;
+            background: #fff; color: #000; border: none; padding: 10px 25px; border-radius: 6px; font-size: 0.8em; font-weight: 900; transition: 0.3s;
         }
+        .copy-btn:hover { transform: scale(1.05); filter: brightness(0.8); }
 
-        .script-content { padding: 30px; }
-        pre { margin: 0; color: #888; font-family: 'Fira Code', monospace; font-size: 1em; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
+        .script-content { padding: 35px; }
+        pre { margin: 0; color: #666; font-family: 'Fira Code', monospace; font-size: 1.05em; line-height: 1.7; white-space: pre-wrap; word-break: break-all; }
 
         #ai-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 75px; height: 75px; border-radius: 50%;
+            position: fixed; bottom: 35px; right: 35px; width: 80px; height: 80px; border-radius: 50%;
             background-image: url('https://raw.githubusercontent.com/benroxy/benroxy.github.io/main/ai-icon.jpg');
-            background-size: cover; border: 2px solid #fff; z-index: 1000; box-shadow: 0 0 30px rgba(255,255,255,0.2);
-            transition: 0.3s;
+            background-size: cover; border: 2px solid #fff; z-index: 1000; box-shadow: 0 0 40px rgba(255,255,255,0.1);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        #ai-btn:hover { transform: rotate(10deg) scale(1.1); box-shadow: 0 0 50px rgba(255,255,255,0.3); }
 
         #ai-window {
-            position: fixed; bottom: 120px; right: 30px; width: 340px; background: #0a0a0a;
-            border: 1px solid #222; border-radius: 20px; display: none; flex-direction: column; z-index: 1000; overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            position: fixed; bottom: 130px; right: 35px; width: 350px; background: #050505;
+            border: 1px solid #1a1a1a; border-radius: 24px; display: none; flex-direction: column; z-index: 1000; overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,1); backdrop-filter: blur(20px);
         }
-        .ai-header { background: #fff; color: #000; padding: 18px; font-weight: bold; text-align: center; }
-        .ai-content { padding: 25px; height: 200px; overflow-y: auto; font-size: 0.9em; color: #999; }
-        .ai-options { padding: 15px; display: flex; flex-direction: column; gap: 8px; background: #080808; }
-        .ai-opt { background: #111; border: 1px solid #1a1a1a; color: #fff; padding: 12px; border-radius: 8px; text-align: left; font-size: 0.8em; }
-        .ai-opt:hover { background: #fff; color: #000; }
+        .ai-header { background: #fff; color: #000; padding: 20px; font-weight: 900; text-align: center; font-size: 1em; text-transform: uppercase; }
+        .ai-content { padding: 30px; height: 220px; overflow-y: auto; font-size: 0.95em; color: #777; line-height: 1.6; }
+        .ai-options { padding: 20px; display: flex; flex-direction: column; gap: 10px; background: #020202; }
+        .ai-opt { background: #080808; border: 1px solid #151515; color: #eee; padding: 14px; border-radius: 10px; text-align: left; font-size: 0.85em; transition: 0.3s; }
+        .ai-opt:hover { background: #fff; color: #000; transform: translateX(5px); }
 
-        footer { padding: 60px; text-align: center; color: #1a1a1a; font-size: 0.7em; letter-spacing: 8px; font-weight: bold; }
+        footer { padding: 80px; text-align: center; color: #111; font-size: 0.8em; letter-spacing: 12px; font-weight: bold; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1 class="title">Roxy Hub</h1>
-        <button class="view-btn" onclick="document.getElementById('products').scrollIntoView()">Sistemi Görüntüle</button>
+    <div class="hero" id="hero">
+        <h1 class="title" id="mainTitle">Roxy Hub</h1>
+        <button class="view-btn" onclick="document.getElementById('products').scrollIntoView()">Sistemi Keşfet</button>
     </div>
 
     <div class="container" id="products">
         <div class="status-container">
-            <div class="status-item"><span class="dot working"></span><span class="status-text">ROXY HUB: <span style="color:#00ff00">AKTİF</span></span></div>
-            <div class="status-item"><span class="dot down"></span><span class="status-text">ROXYSPLOIT: <span style="color:#ff0000">KAPALI</span></span></div>
+            <div class="status-item"><span class="dot working"></span><span class="status-text">ROXY HUB: <span style="color:#00ff00; font-weight:bold;">ONLINE</span></span></div>
+            <div class="status-item"><span class="dot down"></span><span class="status-text">ROXYSPLOIT: <span style="color:#ff0000; font-weight:bold;">OFFLINE</span></span></div>
         </div>
 
-        <h2 style="letter-spacing: 8px; text-transform: uppercase; margin:0; font-family:'Russo One', sans-serif;">Main Script</h2>
-        <p style="color:#333; font-size:0.8em; font-weight:bold; letter-spacing:2px; text-transform:uppercase; margin-bottom:15px;">ALWAYS FREE AND KEYLESS</p>
+        <h2 style="letter-spacing: 10px; text-transform: uppercase; margin:0; font-family:'Russo One', sans-serif; font-size: 2em;">Private Script</h2>
+        <p style="color:#222; font-size:0.9em; font-weight:900; letter-spacing:4px; text-transform:uppercase; margin-bottom:20px; margin-top:10px;">V3.0 ULTIMATE ACCESS</p>
         
         <div class="script-box">
             <div class="script-header">
-                <span style="font-size: 0.7em; color:#444;">ROXY HUB V3.0 / LUA READY</span>
+                <span style="font-size: 0.75em; color:#333; letter-spacing: 3px;">ENCRYPTED LUA SOURCE</span>
                 <button class="copy-btn" onclick="copyCode(this)">KOPYALA</button>
             </div>
             <div class="script-content">
@@ -115,8 +119,8 @@
 
     <div id="ai-btn" onclick="toggleAI()"></div>
     <div id="ai-window">
-        <div class="ai-header">ROXY POWER YARDIMCI</div>
-        <div class="ai-content" id="ai-text">Selam! Ben Power. Roxy Hub hakkında merak ettiğin her şeyi sorabilirsin. Güç burada!</div>
+        <div class="ai-header">Roxy Power</div>
+        <div class="ai-content" id="ai-text">Selam kanka! Ben Power. Her şey yolunda mı? Bugün hangi server'ı patlatıyoruz?</div>
         <div class="ai-options">
             <button class="ai-opt" onclick="askPower('Roxy Hub Güvenli mi?')">Güvenli mi?</button>
             <button class="ai-opt" onclick="askPower('Nasıl Execute Edilir?')">Nasıl çalıştırılır?</button>
@@ -124,20 +128,30 @@
         </div>
     </div>
 
-    <footer>&copy; 2026 ROXY HUB</footer>
+    <footer>ROXY HUB &copy; 2026</footer>
 
     <script>
+        // PARALAKS EFEKTİ (Başlık fareyi takip eder)
+        document.addEventListener('mousemove', (e) => {
+            const title = document.getElementById('mainTitle');
+            const x = (window.innerWidth / 2 - e.pageX) / 30;
+            const y = (window.innerHeight / 2 - e.pageY) / 30;
+            title.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+
         function toggleAI() {
             var win = document.getElementById('ai-window');
             win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
         }
+
         function askPower(q) {
             var text = document.getElementById('ai-text');
-            var a = q === 'Roxy Hub Güvenli mi?' ? "Kesinlikle güvenli! Tüm scriptlerimizi test ediyoruz." : 
-                    q === 'Nasıl Execute Edilir?' ? "Kodu kopyalayıp executor'ına yapıştır." : 
-                    "Hayır! Roxy Hub daima KEYLESS kalacaktır.";
+            var a = q === 'Roxy Hub Güvenli mi?' ? "Valla %100 güvenli kanka, tertemiz kod!" : 
+                    q === 'Nasıl Execute Edilir?' ? "Kopyala, executor'a yapıştır, bam bam bam!" : 
+                    "Sence? Tabii ki Keyless! Bizde cüzdan değil, icraat konuşur.";
             text.innerHTML = "<b>Sen:</b> "+q+"<br><br><b>Power:</b> "+a;
         }
+
         function copyCode(btn) {
             const pre = document.getElementById('myCode');
             const range = document.createRange();
@@ -145,7 +159,7 @@
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
             document.execCommand('copy');
-            btn.textContent = 'KOPYALANDI';
+            btn.textContent = 'KOPYALANDI!';
             btn.style.background = '#00ff00';
             setTimeout(() => { 
                 btn.textContent = 'KOPYALA'; 
