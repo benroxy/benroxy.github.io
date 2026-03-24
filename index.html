@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROXY HUB | Premium Scripts</title>
     <style>
-        /* Modern & Minimalist Reset */
+        /* --- TEMEL AYARLAR --- */
         * {
             margin: 0;
             padding: 0;
@@ -14,221 +14,340 @@
         }
 
         body {
-            background-color: #050505; /* Derin siyah */
+            background-color: #000;
             color: #f0f0f0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navigasyon */
+        /* --- CANLI VİDEO ARKA PLAN --- */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            /* Siyah-Beyaz Filtre ve Karartma */
+            filter: grayscale(100%) contrast(110%) brightness(25%);
+            object-fit: cover;
+        }
+
+        /* Video üzerine hafif doku */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 0;
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- NAVİGASYON --- */
         nav {
-            padding: 1.5rem 5%;
+            padding: 1.5rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #1a1a1a;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
-            z-index: 100;
         }
 
         .logo {
             font-size: 1.2rem;
             font-weight: 900;
             letter-spacing: 4px;
-            text-transform: uppercase;
             border: 2px solid #fff;
             padding: 5px 15px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
-        /* Hero Bölümü */
+        /* --- HEADER --- */
         header {
             text-align: center;
-            padding: 8rem 1rem 4rem 1rem;
+            padding: 10rem 1rem 6rem 1rem;
         }
 
         header h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: -2px;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
             text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(255,255,255,0.2);
         }
 
         header p {
-            color: #666;
+            color: #888;
             font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto;
+            letter-spacing: 1px;
         }
 
-        /* Script Grid */
+        /* --- ANA LOADER KUTUSU --- */
+        .main-script-box {
+            max-width: 850px;
+            margin: 0 auto 5rem auto;
+            background: rgba(15, 15, 15, 0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-script-box h2 {
+            font-size: 0.7rem;
+            color: #555;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+        }
+
+        .code-display {
+            background: #000;
+            padding: 1.2rem;
+            border: 1px solid #1a1a1a;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 2rem;
+            word-break: break-all;
+            text-align: left;
+        }
+
+        /* --- OYUN KARTLARI --- */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 0 2rem 5rem 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
         }
 
         .card {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            padding: 2rem;
-            border-radius: 0px; /* Keskin köşeler daha modern durur */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(5px);
         }
 
         .card:hover {
             border-color: #fff;
-            background: #0f0f0f;
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
-        .card h3 {
-            margin-bottom: 1rem;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-header h3 {
             font-size: 1.4rem;
             text-transform: uppercase;
+            font-weight: 800;
         }
 
-        .card p {
-            color: #888;
+        /* Status Badge (Online/Working) */
+        .status {
+            font-size: 0.6rem;
+            padding: 5px 12px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            border-radius: 2px;
+        }
+
+        .status.online {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .card ul {
+            list-style: none;
+            color: #777;
             font-size: 0.95rem;
-            margin-bottom: 2rem;
-            min-height: 50px;
+            margin-bottom: 2.5rem;
         }
 
-        /* Butonlar */
-        .btn-group {
-            display: flex;
-            gap: 10px;
+        .card ul li {
+            margin-bottom: 8px;
         }
 
-        .btn {
-            flex: 1;
-            padding: 0.8rem;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.75rem;
+        .card ul li::before {
+            content: "— ";
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* --- BUTONLAR --- */
+        .btn-main {
+            width: 100%;
+            padding: 1.2rem;
+            background: #fff;
+            color: #000;
+            border: none;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .btn-primary {
-            background: #fff;
-            color: #000;
-            border: 1px solid #fff;
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: #fff;
+        .btn-main:hover {
+            background: #bbb;
+            letter-spacing: 4px;
         }
 
         .btn-secondary {
+            width: 100%;
+            padding: 0.8rem;
             background: transparent;
-            color: #666;
-            border: 1px solid #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .btn-secondary:hover {
             border-color: #fff;
-            color: #fff;
+            background: rgba(255,255,255,0.05);
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 6rem 2rem;
-            color: #333;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-        }
-
-        /* Bildirim Kutusu */
+        /* --- TOAST & FOOTER --- */
         #toast {
             visibility: hidden;
-            min-width: 200px;
             background-color: #fff;
             color: #000;
             text-align: center;
-            padding: 16px;
+            padding: 16px 30px;
             position: fixed;
-            z-index: 1000;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            font-weight: bold;
+            font-weight: 900;
             text-transform: uppercase;
             font-size: 0.8rem;
+            letter-spacing: 1px;
+            z-index: 9999;
         }
 
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 40px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 40px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        footer {
+            text-align: center;
+            padding: 8rem 2rem;
+            color: #222;
+            font-weight: 900;
+            letter-spacing: 5px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
         }
 
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        /* Mobil Uyumluluk */
+        @media (max-width: 600px) {
+            header h1 { font-size: 3.5rem; }
+            nav { padding: 1.5rem 5%; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">ROXY HUB</div>
-        <div>
-            <a href="#" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px;">DISCORD</a>
-        </div>
-    </nav>
+    <video autoplay loop muted playsinline class="video-background">
+        <source src="background.mp4" type="video/mp4">
+    </video>
 
-    <header>
-        <h1>ROXY HUB</h1>
-        <p>Gelişmiş oyun içi mekanikler ve script çözümleri.</p>
-    </header>
+    <div class="video-overlay"></div>
 
-    <div class="container">
-        <div class="card">
-            <h3>Blade Ball V1.0</h3>
-            <p>Otomatik bloklama ve geliştirilmiş hız takibi özellikleri aktif.</p>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="copyScript('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/benroxy/Roxy-Hub/main/main.lua\'))()')">Kopyala</button>
-                <a href="#" class="btn btn-secondary">Raw</a>
+    <div class="main-content">
+        <nav>
+            <div class="logo">ROXY HUB</div>
+            <div style="font-size: 0.7rem; color: #444; letter-spacing: 2px; font-weight: bold;">VERSION 6.3 RE-MAKE</div>
+        </nav>
+
+        <header>
+            <h1>ROXY HUB</h1>
+            <p>ADVANCED MULTIGAME SCRIPT SOLUTION</p>
+        </header>
+
+        <div class="main-script-box">
+            <h2>MAIN LOADER SCRIPT</h2>
+            <div class="code-display" id="mainLoader">
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()
             </div>
+            <button class="btn-main" onclick="copyText('mainLoader')">Copy Main Loader</button>
         </div>
 
-        <div class="card">
-            <h3>Universal Aimbot</h3>
-            <p>Tüm FPS oyunları için optimize edilmiş bellek tabanlı hedefleme sistemi.</p>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="copyScript('-- Aimbot Script Here')">Kopyala</button>
-                <a href="#" class="btn btn-secondary">Raw</a>
+        <div class="container">
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Lucky Block</h3>
+                    <span class="status online">WORKING</span>
+                </div>
+                <ul>
+                    <li>Auto Farm Luck</li>
+                    <li>Infinite Items</li>
+                    <li>Global Speed/Fly</li>
+                </ul>
+                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>MM2</h3>
+                    <span class="status online">WORKING</span>
+                </div>
+                <ul>
+                    <li>Silent Aim & ESP</li>
+                    <li>Auto Gun Grab</li>
+                    <li>Full Map X-Ray</li>
+                </ul>
+                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>TSB</h3>
+                    <span class="status online">WORKING</span>
+                </div>
+                <ul>
+                    <li>Auto Combo System</li>
+                    <li>Infinite Dash Move</li>
+                    <li>Fast Attack Mode</li>
+                </ul>
+                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>Visual UI Lib</h3>
-            <p>Kendi scriptlerin için kullanabileceğin modern anime temalı arayüz kütüphanesi.</p>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="copyScript('-- UI Library Here')">Kopyala</button>
-                <a href="#" class="btn btn-secondary">Raw</a>
-            </div>
-        </div>
+        <div id="toast">COPIED TO CLIPPBOARD!</div>
+
+        <footer>
+            ROXY HUB &copy; 2026 | DESIGNED BY ROXY.DEV
+        </footer>
     </div>
 
-    <div id="toast">Script Kopyalandı!</div>
-
-    <footer>
-        &copy; 2026 ROXY HUB | BY ROXY.DEV
-    </footer>
-
     <script>
-        function copyScript(text) {
+        function copyText(id) {
+            var text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
                 var x = document.getElementById("toast");
                 x.className = "show";
