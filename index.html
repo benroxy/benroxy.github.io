@@ -1,309 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROXY HUB | Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <title>Roxy Hub | Black & White Edition</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #050505; /* Derin siyah, gözü dinlendirir */
-            color: #e0e0e0;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            font-family: 'Segoe UI', 'Courier New', monospace;
             min-height: 100vh;
+            color: #ffffff;
         }
 
-        /* --- ARKA PLAN VİDEOSU --- */
-        .video-background {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-            filter: grayscale(100%) brightness(15%); /* Videoyu iyice kararttık */
-            object-fit: cover;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Hafif pembe geçişli ama karanlık maske */
-            background: radial-gradient(circle at center, rgba(255, 20, 147, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: 0;
-        }
-
-        .main-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 5rem;
-        }
-
-        /* --- SOFT PEMBE BAŞLIK --- */
-        header {
-            margin-top: 8rem;
-            margin-bottom: 4rem;
+        /* Header */
+        .header {
+            background: #000000;
+            padding: 2rem;
             text-align: center;
+            border-bottom: 2px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
-        .letter {
-            display: inline-block;
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 700;
-            letter-spacing: 12px;
-            text-transform: uppercase;
-            color: #ff69b4; /* Soft pembe */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: reveal 0.8s forwards;
-            animation-delay: calc(var(--i) * 0.1s);
-            text-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
-        }
-
-        @keyframes reveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- DARK GLASS KUTULAR --- */
-        .glass-box {
-            width: 90%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 105, 180, 0.1); /* Çok ince pembe çerçeve */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .glass-box h2 {
-            font-size: 0.7rem;
+        .header h1 {
+            font-size: 3rem;
             letter-spacing: 4px;
-            color: rgba(255, 105, 180, 0.5);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        .code-display {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: #888;
-            word-break: break-all;
-            margin-bottom: 1.5rem;
-            text-align: left;
+        .header p {
+            color: #cccccc;
+            margin-top: 1rem;
+            font-size: 1.1rem;
         }
 
-        /* --- OYUN KARTLARI --- */
+        .badge {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* Container */
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Script Box */
+        .script-box {
+            background: #0a0a0a;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .script-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            border-left: 3px solid #ffffff;
+            padding-left: 1rem;
+        }
+
+        .code-block {
+            background: #000000;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 1rem;
+            position: relative;
+        }
+
+        pre {
+            background: #000000;
+            color: #ffffff;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #cccccc;
+            transform: scale(1.05);
+        }
+
+        /* Games Grid */
+        .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            width: 95%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .game-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            padding: 2rem;
-            border-radius: 6px;
-            text-align: center;
-            transition: 0.3s;
+            background: #0a0a0a;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .game-card:hover {
-            background: rgba(255, 105, 180, 0.03);
-            border-color: rgba(255, 105, 180, 0.3);
             transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.1);
+            border-color: #ffffff;
         }
 
-        .card-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 1.5rem;
+        .game-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
         }
 
-        .game-card h3 {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #ccc;
+        .game-status {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
 
-        /* --- GREEN WORKING AMBLEM --- */
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.6rem;
-            font-weight: 900;
-            color: #00ff88; /* Daha soft bir yeşil */
-            letter-spacing: 1px;
-            padding: 2px 6px;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 3px;
+        .status-working {
+            background: #ffffff;
+            color: #000000;
         }
 
-        .status-badge::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            background-color: #00ff88;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #00ff88;
+        .game-id {
+            color: #888888;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-family: monospace;
         }
 
-        /* --- BUTONLAR --- */
-        .btn-main {
-            width: 100%;
-            padding: 1rem;
-            background: #ff69b4;
-            color: #000;
+        .execute-btn {
+            background: #ffffff;
+            color: #000000;
             border: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
             cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.75rem;
-        }
-
-        .btn-main:hover {
-            background: #ff1493;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
-        }
-
-        .btn-small {
-            background: transparent;
-            color: #ff69b4;
-            border: 1px solid rgba(255, 105, 180, 0.2);
-            padding: 0.7rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
+            font-weight: bold;
             width: 100%;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
         }
 
-        .btn-small:hover {
-            border-color: #ff69b4;
-            background: rgba(255, 105, 180, 0.05);
+        .execute-btn:hover {
+            background: #cccccc;
+            transform: scale(1.02);
         }
 
-        /* --- TOAST & FOOTER --- */
-        #toast {
-            visibility: hidden;
-            background: #ff69b4;
-            color: #000;
-            padding: 12px 30px;
+        /* Info Section */
+        .info-section {
+            background: #0a0a0a;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            border-left: 3px solid #ffffff;
+            padding-left: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            border-bottom: 1px solid #222222;
+        }
+
+        .info-label {
+            color: #888888;
+        }
+
+        .info-value {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #333333;
+            margin-top: 2rem;
+            color: #888888;
+        }
+
+        /* Notification */
+        .notification {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: 900;
-            font-size: 0.7rem;
-            z-index: 9999;
+            bottom: 20px;
+            right: 20px;
+            background: #ffffff;
+            color: #000000;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
         }
-        #toast.show { visibility: visible; animation: f-in 0.5s, f-out 0.5s 2.5s; }
-        @keyframes f-in { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes f-out { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-        footer { margin-top: 5rem; padding: 3rem; color: #222; font-size: 0.6rem; letter-spacing: 8px; font-weight: 900; }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>ROXY HUB</h1>
+        <p>Black & White Edition | Premium Roblox Script Executor</p>
+        <div class="badge">✦ ALL SCRIPTS WORKING ✦</div>
+    </div>
 
-    <video autoplay loop muted playsinline class="video-background">
-        <source src="background.mp4" type="video/mp4">
-    </video>
-
-    <div class="overlay"></div>
-
-    <div class="main-content">
-        <header id="typewriter"></header>
-
-        <div class="glass-box">
-            <h2>SCRIPT LOADER</h2>
-            <div class="code-display" id="mainLoader">
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()
-            </div>
-            <button class="btn-main" onclick="copyText('mainLoader')">Copy Loadstring</button>
-        </div>
-
-        <div class="container">
-            <div class="game-card">
-                <div class="card-header">
-                    <h3>Lucky Block</h3>
-                    <div class="status-badge">WORKING</div>
-                </div>
-                <button class="btn-small" onclick="copyText('mainLoader')">Get Script</button>
-            </div>
-
-            <div class="game-card">
-                <div class="card-header">
-                    <h3>MM2</h3>
-                    <div class="status-badge">WORKING</div>
-                </div>
-                <button class="btn-small" onclick="copyText('mainLoader')">Get Script</button>
-            </div>
-
-            <div class="game-card">
-                <h3>TSB</h3>
-                <div class="card-header" style="margin-bottom:1.5rem">
-                    <h3 style="margin-bottom:0">TSB</h3>
-                    <div class="status-badge">WORKING</div>
-                </div>
-                <button class="btn-small" onclick="copyText('mainLoader')">Get Script</button>
+    <div class="container">
+        <!-- Main Loader Script -->
+        <div class="script-box">
+            <div class="script-title">📋 MAIN LOADER SCRIPT</div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyScript()">📋 COPY</button>
+                <pre id="mainScript">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()</pre>
             </div>
         </div>
 
-        <div id="toast">COPIED!</div>
-        <footer>ROXY HUB V6.3</footer>
+        <!-- Supported Games -->
+        <div class="script-title">🎮 SUPPORTED GAMES (WORKING)</div>
+        <div class="games-grid">
+            <!-- The Strongest Battlegrounds -->
+            <div class="game-card">
+                <div class="game-name">⚔️ THE STRONGEST BATTLEGROUNDS</div>
+                <div class="game-status status-working">✅ WORKING</div>
+                <div class="game-id">Game ID: 10449406742</div>
+                <button class="execute-btn" onclick="executeScript('thestrongest')">▶ EXECUTE SCRIPT</button>
+            </div>
+
+            <!-- Be a Lucky Block -->
+            <div class="game-card">
+                <div class="game-name">🍀 BE A LUCKY BLOCK</div>
+                <div class="game-status status-working">✅ WORKING</div>
+                <div class="game-id">Game ID: 6182290393</div>
+                <button class="execute-btn" onclick="executeScript('luckyblock')">▶ EXECUTE SCRIPT</button>
+            </div>
+
+            <!-- Murder Mystery 2 -->
+            <div class="game-card">
+                <div class="game-name">🔪 MURDER MYSTERY 2</div>
+                <div class="game-status status-working">✅ WORKING</div>
+                <div class="game-id">Game ID: 142823291</div>
+                <button class="execute-btn" onclick="executeScript('mm2')">▶ EXECUTE SCRIPT</button>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <div class="info-title">ℹ️ HUB INFORMATION</div>
+            <div class="info-item">
+                <span class="info-label">Hub Name:</span>
+                <span class="info-value">Roxy Hub - Black & White Edition</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Status:</span>
+                <span class="info-value">✅ All Scripts Working</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Supported Games:</span>
+                <span class="info-value">3 Games (All Working)</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Last Update:</span>
+                <span class="info-value">March 2026</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">How to Use:</span>
+                <span class="info-value">1. Copy Main Loader Script → 2. Paste in Executor → 3. Execute</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Roxy Hub | Black & White Theme | All Scripts Are Working ✅</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">© 2026 Roxy Hub - Best Roblox Script Hub</p>
     </div>
 
     <script>
-        const titleText = "ROXY HUB";
-        const headerContainer = document.getElementById('typewriter');
-        
-        titleText.split('').forEach((char, index) => {
-            const span = document.createElement('span');
-            span.textContent = char === " " ? "\u00A0" : char;
-            span.className = 'letter';
-            span.style.setProperty('--i', index);
-            headerContainer.appendChild(span);
-        });
-
-        function copyText(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById("toast");
-                toast.className = "show";
-                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        function copyScript() {
+            const scriptText = document.getElementById("mainScript").innerText;
+            navigator.clipboard.writeText(scriptText).then(() => {
+                showNotification("✅ Script copied to clipboard!");
+            }).catch(() => {
+                showNotification("❌ Failed to copy script");
             });
+        }
+
+        function executeScript(game) {
+            let script = "";
+            
+            if (game === 'thestrongest') {
+                script = `-- The Strongest Battlegrounds Script
+loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/TheStrongestBattlegrounds.lua"))()
+print("✅ The Strongest Battlegrounds Script Loaded")`;
+            } 
+            else if (game === 'luckyblock') {
+                script = `-- Be a Lucky Block Script
+loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/BeALuckyBlock.lua"))()
+print("✅ Be a Lucky Block Script Loaded")`;
+            } 
+            else if (game === 'mm2') {
+                script = `-- Murder Mystery 2 Script
+loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/MurderMystery2.lua"))()
+print("✅ Murder Mystery 2 Script Loaded")`;
+            }
+            
+            navigator.clipboard.writeText(script).then(() => {
+                showNotification(`✅ ${game.toUpperCase()} script copied! Paste in executor`);
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
     </script>
 </body>
