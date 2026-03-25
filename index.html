@@ -43,6 +43,8 @@
             overflow-x: auto;
             border: 1px solid #333;
             border-radius: 3px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         button {
@@ -69,10 +71,12 @@
             border: 1px solid #333;
             border-radius: 5px;
             text-align: center;
+            vertical-align: top;
         }
         
         .working {
             color: #0f0;
+            font-weight: bold;
         }
         
         @media (max-width: 600px) {
@@ -89,71 +93,118 @@
             border-top: 1px solid #333;
             color: #666;
         }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 5px;
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+            font-weight: bold;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .game-desc {
+            font-size: 12px;
+            color: #888;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="center">
             <h1>ROXY HUB</h1>
-            <p>Black & White Edition</p>
+            <p>Black & White Edition | Premium Script Hub</p>
         </div>
         
         <div class="card">
             <h3>▶ MAIN LOADER</h3>
             <pre id="mainScript">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()</pre>
-            <button onclick="copyMain()">COPY SCRIPT</button>
+            <button onclick="copyMain()">📋 COPY SCRIPT</button>
         </div>
         
-        <h3>🎮 SUPPORTED GAMES (WORKING)</h3>
+        <h3>🎮 SUPPORTED GAMES <span style="color:#0f0;">(ALL WORKING)</span></h3>
         
         <div class="game">
             <strong>⚔️ THE STRONGEST BATTLEGROUNDS</strong><br>
             <span class="working">✅ WORKING</span><br>
-            <button onclick="copyGame('tsb')">GET SCRIPT</button>
+            <div class="game-desc">Game ID: 10449406742</div>
+            <button onclick="copyGame('tsb')">🚀 GET SCRIPT</button>
         </div>
         
         <div class="game">
             <strong>🍀 BE A LUCKY BLOCK</strong><br>
             <span class="working">✅ WORKING</span><br>
-            <button onclick="copyGame('lucky')">GET SCRIPT</button>
+            <div class="game-desc">Game ID: 6182290393</div>
+            <button onclick="copyGame('lucky')">🚀 GET SCRIPT</button>
         </div>
         
         <div class="game">
             <strong>🔪 MURDER MYSTERY 2</strong><br>
             <span class="working">✅ WORKING</span><br>
-            <button onclick="copyGame('mm2')">GET SCRIPT</button>
+            <div class="game-desc">Game ID: 142823291</div>
+            <button onclick="copyGame('mm2')">🚀 GET SCRIPT</button>
         </div>
         
         <div class="card">
             <h3>ℹ️ STATUS</h3>
             <p>✅ All Scripts: <strong>WORKING</strong></p>
-            <p>📦 Total Games: 3</p>
+            <p>📦 Total Games: 3 Supported</p>
             <p>🎨 Theme: Black & White</p>
+            <p>🔧 How to use: Copy script → Paste in executor → Execute</p>
         </div>
         
         <div class="footer">
-            Roxy Hub | All Scripts Working ✅
+            Roxy Hub | All Scripts Working ✅ | Black & White Edition
         </div>
     </div>
     
     <script>
+        // Ana loader scripti
+        const mainLoaderScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()';
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+        
         function copyMain() {
-            const script = document.getElementById('mainScript').innerText;
-            navigator.clipboard.writeText(script);
-            alert('✅ Main loader copied!');
+            navigator.clipboard.writeText(mainLoaderScript);
+            showNotification('✅ Main loader copied to clipboard!');
         }
         
         function copyGame(game) {
-            let script = '';
-            if(game === 'tsb') {
-                script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/TheStrongestBattlegrounds.lua"))()';
-            } else if(game === 'lucky') {
-                script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/BeALuckyBlock.lua"))()';
-            } else if(game === 'mm2') {
-                script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/MurderMystery2.lua"))()';
-            }
-            navigator.clipboard.writeText(script);
-            alert('✅ Script copied! Paste in executor');
+            // Bütün oyunlar için ana loader scriptini kopyala
+            const scriptToCopy = mainLoaderScript;
+            
+            let gameName = '';
+            if(game === 'tsb') gameName = 'The Strongest Battlegrounds';
+            if(game === 'lucky') gameName = 'Be a Lucky Block';
+            if(game === 'mm2') gameName = 'Murder Mystery 2';
+            
+            navigator.clipboard.writeText(scriptToCopy);
+            showNotification(`✅ ${gameName} script copied! Paste in executor and run`);
         }
     </script>
 </body>
