@@ -1,388 +1,159 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub | Black & White Edition</title>
+    <title>Roxy Hub | B&W</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            font-family: 'Segoe UI', 'Courier New', monospace;
-            min-height: 100vh;
-            color: #ffffff;
-        }
-
-        /* Header */
-        .header {
-            background: #000000;
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 2px solid #ffffff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            letter-spacing: 4px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        .header p {
-            color: #cccccc;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #ffffff;
-            color: #000000;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Script Box */
-        .script-box {
-            background: #0a0a0a;
-            border: 1px solid #333333;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .script-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            border-left: 3px solid #ffffff;
-            padding-left: 1rem;
-        }
-
-        .code-block {
-            background: #000000;
-            border: 1px solid #333333;
-            border-radius: 8px;
-            padding: 1rem;
-            position: relative;
-        }
-
-        pre {
-            background: #000000;
-            color: #ffffff;
-            padding: 1rem;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .copy-btn:hover {
-            background: #cccccc;
-            transform: scale(1.05);
-        }
-
-        /* Games Grid */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .game-card {
-            background: #0a0a0a;
-            border: 1px solid #333333;
-            border-radius: 10px;
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(255,255,255,0.1);
-            border-color: #ffffff;
-        }
-
-        .game-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        .game-status {
-            display: inline-block;
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .status-working {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .game-id {
-            color: #888888;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
+            background: #000;
+            color: #fff;
             font-family: monospace;
+            margin: 0;
+            padding: 20px;
         }
-
-        .execute-btn {
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            padding: 0.7rem 1.5rem;
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #fff;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        .card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
             border-radius: 5px;
+        }
+        
+        pre {
+            background: #000;
+            padding: 15px;
+            overflow-x: auto;
+            border: 1px solid #333;
+            border-radius: 3px;
+        }
+        
+        button {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 8px 20px;
             cursor: pointer;
             font-weight: bold;
-            width: 100%;
-            transition: all 0.3s;
-            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            border-radius: 3px;
         }
-
-        .execute-btn:hover {
-            background: #cccccc;
-            transform: scale(1.02);
+        
+        button:hover {
+            background: #ddd;
         }
-
-        /* Info Section */
-        .info-section {
-            background: #0a0a0a;
-            border: 1px solid #333333;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .info-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            border-left: 3px solid #ffffff;
-            padding-left: 1rem;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem;
-            border-bottom: 1px solid #222222;
-        }
-
-        .info-label {
-            color: #888888;
-        }
-
-        .info-value {
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        /* Footer */
-        .footer {
-            background: #000000;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #333333;
-            margin-top: 2rem;
-            color: #888888;
-        }
-
-        /* Notification */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ffffff;
-            color: #000000;
-            padding: 1rem 2rem;
+        
+        .game {
+            display: inline-block;
+            width: 30%;
+            margin: 1%;
+            background: #111;
+            padding: 15px;
+            border: 1px solid #333;
             border-radius: 5px;
-            animation: slideIn 0.3s ease-out;
-            z-index: 1000;
+            text-align: center;
         }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
+        
+        .working {
+            color: #0f0;
+        }
+        
+        @media (max-width: 600px) {
+            .game {
+                width: 98%;
+                margin: 10px 0;
             }
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .container {
-                padding: 1rem;
-            }
-            
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>ROXY HUB</h1>
-        <p>Black & White Edition | Premium Roblox Script Executor</p>
-        <div class="badge">✦ ALL SCRIPTS WORKING ✦</div>
-    </div>
-
     <div class="container">
-        <!-- Main Loader Script -->
-        <div class="script-box">
-            <div class="script-title">📋 MAIN LOADER SCRIPT</div>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyScript()">📋 COPY</button>
-                <pre id="mainScript">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()</pre>
-            </div>
+        <div class="center">
+            <h1>ROXY HUB</h1>
+            <p>Black & White Edition</p>
         </div>
-
-        <!-- Supported Games -->
-        <div class="script-title">🎮 SUPPORTED GAMES (WORKING)</div>
-        <div class="games-grid">
-            <!-- The Strongest Battlegrounds -->
-            <div class="game-card">
-                <div class="game-name">⚔️ THE STRONGEST BATTLEGROUNDS</div>
-                <div class="game-status status-working">✅ WORKING</div>
-                <div class="game-id">Game ID: 10449406742</div>
-                <button class="execute-btn" onclick="executeScript('thestrongest')">▶ EXECUTE SCRIPT</button>
-            </div>
-
-            <!-- Be a Lucky Block -->
-            <div class="game-card">
-                <div class="game-name">🍀 BE A LUCKY BLOCK</div>
-                <div class="game-status status-working">✅ WORKING</div>
-                <div class="game-id">Game ID: 6182290393</div>
-                <button class="execute-btn" onclick="executeScript('luckyblock')">▶ EXECUTE SCRIPT</button>
-            </div>
-
-            <!-- Murder Mystery 2 -->
-            <div class="game-card">
-                <div class="game-name">🔪 MURDER MYSTERY 2</div>
-                <div class="game-status status-working">✅ WORKING</div>
-                <div class="game-id">Game ID: 142823291</div>
-                <button class="execute-btn" onclick="executeScript('mm2')">▶ EXECUTE SCRIPT</button>
-            </div>
+        
+        <div class="card">
+            <h3>▶ MAIN LOADER</h3>
+            <pre id="mainScript">loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()</pre>
+            <button onclick="copyMain()">COPY SCRIPT</button>
         </div>
-
-        <!-- Info Section -->
-        <div class="info-section">
-            <div class="info-title">ℹ️ HUB INFORMATION</div>
-            <div class="info-item">
-                <span class="info-label">Hub Name:</span>
-                <span class="info-value">Roxy Hub - Black & White Edition</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Status:</span>
-                <span class="info-value">✅ All Scripts Working</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Supported Games:</span>
-                <span class="info-value">3 Games (All Working)</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Last Update:</span>
-                <span class="info-value">March 2026</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">How to Use:</span>
-                <span class="info-value">1. Copy Main Loader Script → 2. Paste in Executor → 3. Execute</span>
-            </div>
+        
+        <h3>🎮 SUPPORTED GAMES (WORKING)</h3>
+        
+        <div class="game">
+            <strong>⚔️ THE STRONGEST BATTLEGROUNDS</strong><br>
+            <span class="working">✅ WORKING</span><br>
+            <button onclick="copyGame('tsb')">GET SCRIPT</button>
+        </div>
+        
+        <div class="game">
+            <strong>🍀 BE A LUCKY BLOCK</strong><br>
+            <span class="working">✅ WORKING</span><br>
+            <button onclick="copyGame('lucky')">GET SCRIPT</button>
+        </div>
+        
+        <div class="game">
+            <strong>🔪 MURDER MYSTERY 2</strong><br>
+            <span class="working">✅ WORKING</span><br>
+            <button onclick="copyGame('mm2')">GET SCRIPT</button>
+        </div>
+        
+        <div class="card">
+            <h3>ℹ️ STATUS</h3>
+            <p>✅ All Scripts: <strong>WORKING</strong></p>
+            <p>📦 Total Games: 3</p>
+            <p>🎨 Theme: Black & White</p>
+        </div>
+        
+        <div class="footer">
+            Roxy Hub | All Scripts Working ✅
         </div>
     </div>
-
-    <div class="footer">
-        <p>Roxy Hub | Black & White Theme | All Scripts Are Working ✅</p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem;">© 2026 Roxy Hub - Best Roblox Script Hub</p>
-    </div>
-
+    
     <script>
-        function copyScript() {
-            const scriptText = document.getElementById("mainScript").innerText;
-            navigator.clipboard.writeText(scriptText).then(() => {
-                showNotification("✅ Script copied to clipboard!");
-            }).catch(() => {
-                showNotification("❌ Failed to copy script");
-            });
+        function copyMain() {
+            const script = document.getElementById('mainScript').innerText;
+            navigator.clipboard.writeText(script);
+            alert('✅ Main loader copied!');
         }
-
-        function executeScript(game) {
-            let script = "";
-            
-            if (game === 'thestrongest') {
-                script = `-- The Strongest Battlegrounds Script
-loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/TheStrongestBattlegrounds.lua"))()
-print("✅ The Strongest Battlegrounds Script Loaded")`;
-            } 
-            else if (game === 'luckyblock') {
-                script = `-- Be a Lucky Block Script
-loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/BeALuckyBlock.lua"))()
-print("✅ Be a Lucky Block Script Loaded")`;
-            } 
-            else if (game === 'mm2') {
-                script = `-- Murder Mystery 2 Script
-loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/MurderMystery2.lua"))()
-print("✅ Murder Mystery 2 Script Loaded")`;
+        
+        function copyGame(game) {
+            let script = '';
+            if(game === 'tsb') {
+                script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/TheStrongestBattlegrounds.lua"))()';
+            } else if(game === 'lucky') {
+                script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/BeALuckyBlock.lua"))()';
+            } else if(game === 'mm2') {
+                script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Scripts/MurderMystery2.lua"))()';
             }
-            
-            navigator.clipboard.writeText(script).then(() => {
-                showNotification(`✅ ${game.toUpperCase()} script copied! Paste in executor`);
-            });
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
+            navigator.clipboard.writeText(script);
+            alert('✅ Script copied! Paste in executor');
         }
     </script>
 </body>
