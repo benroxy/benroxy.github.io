@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROXY HUB | Trip Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=VT323&display=swap" rel="stylesheet">
+    <title>ROXY HUB | Pink Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Ana yazı tipi VT323 (Kafası güzel retro/glitch) */
-            font-family: 'VT323', monospace;
+            /* Ana yazı tipi Inter (Modern ve Okunaklı) */
+            font-family: 'Inter', sans-serif;
             cursor: crosshair; /* Fare imlecini artı işareti yap */
         }
 
         body {
-            background-color: #000;
-            color: #fff;
+            /* Ana Arka Plan Rengi: Çok Açık Pembe */
+            background-color: #fff0f5; 
+            color: #333; /* Ana yazı rengi koyu gri (okunabilirlik için) */
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* --- CANLI ARKA PLAN (VİDEO) --- */
+        /* --- CANLI VİDEO ARKA PLAN --- */
         .video-background {
             position: fixed;
             right: 0;
@@ -30,19 +31,21 @@
             min-width: 100%;
             min-height: 100%;
             z-index: -1;
-            /* Videoyu karartma (yazılar okunsun diye) */
-            filter: brightness(25%) contrast(110%);
+            /* Videoyu aydınlatma ve pembe tonlama (Pembe Tema Ayarı) */
+            filter: grayscale(100%) brightness(110%) sepia(50%) hue-rotate(300deg) saturate(300%);
             object-fit: cover;
+            opacity: 0.3; /* Videoyu çok hafiflet (temayı bozmasın) */
         }
 
-        /* Ek hipnotik katman (hafif mor/mavi ton) */
+        /* Ek pembe doku ve karartma (yazılar okunsun diye) */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.4) 0%, rgba(20,0,50,0.2) 100%);
+            /* Pembe-Beyaz Geçişli Overlay */
+            background: linear-gradient(135deg, rgba(255,240,245,0.7) 0%, rgba(255,192,203,0.3) 100%);
             z-index: 0;
         }
 
@@ -57,8 +60,8 @@
 
         /* --- HARF HARF GELEN HİPNOTİK BAŞLIK --- */
         header {
-            margin-top: 10rem;
-            margin-bottom: 5rem;
+            margin-top: 8rem;
+            margin-bottom: 4rem;
             text-align: center;
         }
 
@@ -66,25 +69,19 @@
             display: inline-block;
             /* Başlık yazı tipi Syncopate (Uçuk/Geniş) */
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(3rem, 12vw, 8rem);
+            font-size: clamp(3rem, 10vw, 6.5rem);
             font-weight: 700;
-            letter-spacing: 20px;
+            letter-spacing: 15px;
             text-transform: uppercase;
-            color: #fff;
+            /* Başlık rengi: Koyu Pembe */
+            color: #ff1493; 
             opacity: 0;
-            transform: translateY(50px) scale(0.8);
-            /* Reveal ve Neon Parlama Animasyonu */
-            animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-                       neon-glow 2s ease-in-out infinite;
-            /* Harf Harf Gecikme Ayarı (0.12s'den 0.15s'ye çıkarıldı) */
-            animation-delay: calc(var(--i) * 0.15s);
-            /* Başlangıçta neon parlaması olmasın */
-            animation-play-state: running, paused;
-        }
-
-        /* Harfler geldikten sonra neon parlamasını başlat */
-        .letter:nth-child(n) {
-            animation-play-state: running, running;
+            transform: translateY(40px) scale(0.9);
+            /* Reveal ve Pembe Neon Parlama Animasyonu */
+            animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+                       pink-glow 2.5s ease-in-out infinite;
+            /* Harf Harf Gecikme Ayarı */
+            animation-delay: calc(var(--i) * 0.12s);
         }
 
         @keyframes reveal {
@@ -94,146 +91,192 @@
             }
         }
 
-        /* Uçuk Neon Parlama Efekti */
-        @keyframes neon-glow {
+        /* Pembe Neon Parlama Efekti */
+        @keyframes pink-glow {
             0%, 100% {
-                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
-                             0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de;
+                text-shadow: 0 0 10px rgba(255,20,147,0.5), 0 0 20px rgba(255,20,147,0.3), 0 0 30px rgba(255,20,147,0.2);
             }
             50% {
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
-                             0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de;
-                transform: skewX(-5deg); /* Harfleri hafifçe yamult (Kafa güzel efekti) */
+                text-shadow: 0 0 15px rgba(255,20,147,0.7), 0 0 30px rgba(255,20,147,0.5), 0 0 45px rgba(255,20,147,0.4);
+                transform: skewX(-3deg); /* Harfleri hafifçe yamult */
             }
         }
 
-        /* --- FULL ŞEFFAF KUTU (YÜZEN İÇERİK) --- */
-        .transparent-box {
+        /* --- ŞEFFAF (GLASSMORPHISM) SCRIPT KUTUSU --- */
+        .glass-box {
             width: 90%;
-            max-width: 900px;
-            /* Hiçbir Arka Plan Rengi Yok - Full Şeffaf */
-            background: transparent;
-            /* Sadece çok ince bir çizgi ve gölge */
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            padding: 4rem;
-            margin-bottom: 5rem;
+            max-width: 850px;
+            /* Cam Efekti: Çok Hafif Beyaz ve Buzlu */
+            background: rgba(255, 255, 255, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px); /* Arka planı buzlandırır */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 3rem;
+            margin-bottom: 4rem;
             text-align: center;
-            transition: 0.3s;
+            border-radius: 4px;
+            transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .transparent-box:hover {
-            border-color: rgba(255,0,222,0.3); /* Neon Pembe Çizgiye Dönüş */
-            box-shadow: 0 0 20px rgba(255,0,222,0.1);
+        .glass-box:hover {
+            border-color: rgba(255,20,147,0.4); /* Neon Pembe Çizgiye Dönüş */
+            box-shadow: 0 0 30px rgba(255,20,147,0.1);
         }
 
-        .transparent-box h2 {
-            font-size: 0.8rem;
-            letter-spacing: 6px;
-            color: rgba(255,0,222,0.5); /* Neon Pembe Yazı */
+        .glass-box h2 {
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            color: rgba(255,20,147,0.6); /* Neon Pembe Yazı */
             margin-bottom: 2rem;
             text-transform: uppercase;
+            font-weight: 700;
         }
 
-        /* Kod Kutusu da Full Şeffaf */
+        /* Kod Kutusu da Şeffaf Cam */
         .code-display {
-            background: transparent;
-            padding: 1rem;
-            border-bottom: 2px solid rgba(255,255,255,0.05); /* Sadece Alt Çizgi */
-            font-family: 'VT323', monospace;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.4); /* Şeffaf yazı */
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #555; /* Kod yazısı koyu gri */
             word-break: break-all;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             text-align: left;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
-        /* --- FULL ŞEFFAF OYUN KARTLARI --- */
+        /* --- ŞEFFAF (GLASSMORPHISM) OYUN KARTLARI --- */
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+            gap: 25px;
+            max-width: 1100px;
             width: 90%;
         }
 
         .game-card {
-            /* Hiçbir Arka Plan Rengi Yok - Full Şeffaf */
-            background: transparent;
-            /* Sadece çok ince bir çizgi */
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 3rem;
+            /* Cam Efekti */
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem;
             text-align: center;
-            transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
         }
 
         .game-card:hover {
-            transform: translateY(-10px) rotateZ(2deg); /* Hem Yüksel hem de Eğil (Kafası güzel efekti) */
-            border-color: rgba(0,255,255,0.4); /* Neon Mavi Çizgiye Dönüş */
-            box-shadow: 0 0 30px rgba(0,255,255,0.1);
+            transform: translateY(-8px) rotateZ(1deg); /* Hem Yüksel hem de Eğil */
+            border-color: rgba(0,255,0,0.5); /* Neon Yeşil Çizgiye Dönüş */
+            box-shadow: 0 0 25px rgba(0,255,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
         }
 
         .game-card h3 {
-            font-size: 1.4rem;
-            letter-spacing: 4px;
+            font-size: 1.25rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            color: rgba(0,255,255,0.6); /* Neon Mavi Yazı */
+            font-weight: 900;
+            color: #333;
         }
 
-        /* --- BUTONLAR --- */
+        /* --- YEŞİL, PARLAYAN WORKING AMBLEMİ --- */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: #00e600; /* Neon Yeşil Yazı */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 3px 8px;
+            background: rgba(0,230,0,0.05); /* Çok hafif yeşil arka plan */
+            border: 1px solid rgba(0,230,0,0.2); /* Yeşil çizgi */
+            border-radius: 2px;
+            animation: green-pulse 2s infinite; /* Yeşil parlama animasyonu */
+        }
+
+        /* Yeşil Nokta (Amblem) */
+        .status-badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background-color: #00e600;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #00e600, 0 0 15px #00e600;
+        }
+
+        @keyframes green-pulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(0,230,0,0.1);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(0,230,0,0.3);
+                border-color: rgba(0,230,0,0.6);
+            }
+        }
+
+        /* --- BUTONLAR (Pembe & Neon) --- */
         .btn-main {
             width: 100%;
             padding: 1.2rem;
-            background: transparent;
-            color: #fff;
-            border: 2px solid #fff; /* Neon Pembe Buton Çizgisi */
+            background: #ff1493; /* Koyu Pembe Arka Plan */
+            color: #fff; /* Beyaz Yazı */
+            border: none;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             cursor: pointer;
             transition: 0.3s;
             font-family: 'Syncopate', sans-serif;
             font-size: 0.8rem;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255,20,147,0.3);
         }
 
         .btn-main:hover {
-            background: #fff;
-            color: #000;
-            letter-spacing: 5px;
-            box-shadow: 0 0 30px #fff;
+            background: #ff69b4; /* Daha Açık Pembe */
+            letter-spacing: 4px;
+            box-shadow: 0 10px 25px rgba(255,20,147,0.5);
         }
 
-        .btn-secondary {
+        .btn-small {
             background: transparent;
-            color: rgba(0,255,255,0.5); /* Neon Mavi Buton Yazısı */
-            border: 1px solid rgba(0,255,255,0.2); /* Neon Mavi Buton Çizgisi */
+            color: #ff1493; /* Pembe Buton Yazısı */
+            border: 1px solid rgba(255,20,147,0.3); /* Pembe Buton Çizgisi */
             padding: 0.8rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
             cursor: pointer;
             transition: 0.3s;
             width: 100%;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        .btn-secondary:hover {
-            border-color: rgba(0,255,255,0.8);
-            color: rgba(0,255,255,0.8);
-            background: rgba(0,255,255,0.05);
-            box-shadow: 0 0 15px rgba(0,255,255,0.1);
+        .btn-small:hover {
+            border-color: rgba(255,20,147,0.8);
+            color: rgba(255,20,147,0.8);
+            background: rgba(255,20,147,0.05);
+            box-shadow: 0 0 10px rgba(255,20,147,0.1);
         }
 
-        /* --- TOAST & FOOTER --- */
+        /* --- TOAST & FOOTER (Pembe & Neon) --- */
         #toast {
             visibility: hidden;
-            background: #ff00de; /* Neon Pembe Bildirim */
+            background: #ff1493; /* Neon Pembe Bildirim */
             color: #fff;
-            padding: 15px 50px;
+            padding: 15px 40px;
             position: fixed;
             bottom: 40px;
             left: 50%;
@@ -241,16 +284,16 @@
             font-weight: 900;
             z-index: 9999;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: 'Syncopate', sans-serif;
+            letter-spacing: 1.5px;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
-            box-shadow: 0 0 30px #ff00de;
+            box-shadow: 0 0 30px rgba(255,20,147,0.6);
         }
         #toast.show { visibility: visible; animation: f-in 0.5s, f-out 0.5s 2.5s; }
         @keyframes f-in { from {bottom: 0; opacity: 0;} to {bottom: 40px; opacity: 1;} }
         @keyframes f-out { from {bottom: 40px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-        footer { margin-top: 8rem; padding: 4rem; color: #111; font-size: 0.8rem; letter-spacing: 15px; font-weight: 900; }
+        footer { margin-top: 6rem; padding: 4rem; color: rgba(255,20,147,0.3); font-size: 0.7rem; letter-spacing: 10px; font-weight: 900; }
     </style>
 </head>
 <body>
@@ -264,7 +307,7 @@
     <div class="main-content">
         <header id="typewriter"></header>
 
-        <div class="transparent-box">
+        <div class="glass-box">
             <h2>MAIN SCRIPT LOADER</h2>
             <div class="code-display" id="mainLoader">
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/benroxy/Roxy-Hub-Reamke/refs/heads/main/Roxy%20Hub%20loader"))()
@@ -274,23 +317,27 @@
 
         <div class="container">
             <div class="game-card">
-                <h3>Lucky Block</h3>
-                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
+                <div class="card-header">
+                    <h3>Lucky Block</h3>
+                    <div class="status-badge">WORKING</div>
+                </div>
+                <button class="btn-small" onclick="copyText('mainLoader')">Get Script</button>
             </div>
 
             <div class="game-card">
-                <h3>MM2</h3>
-                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
+                <div class="card-header">
+                    <h3>MM2</h3>
+                    <div class="status-badge">WORKING</div>
+                </div>
+                <button class="btn-small" onclick="copyText('mainLoader')">Get Script</button>
             </div>
 
             <div class="game-card">
-                <h3>TSB</h3>
-                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
-            </div>
-
-            <div class="game-card">
-                <h3>Blade Ball</h3>
-                <button class="btn-secondary" onclick="copyText('mainLoader')">Get Script</button>
+                <div class="card-header">
+                    <h3>TSB</h3>
+                    <div class="status-badge">WORKING</div>
+                </div>
+                <button class="btn-small" onclick="copyText('mainLoader')">Get Script</button>
             </div>
         </div>
 
@@ -299,7 +346,7 @@
     </div>
 
     <script>
-        // Roxy Hub Başlık Animasyonu (Hipnotik)
+        // Roxy Hub Başlık Animasyonu (Hipnotik Pembe)
         const titleText = "ROXY HUB";
         const headerContainer = document.getElementById('typewriter');
         
