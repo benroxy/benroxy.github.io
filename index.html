@@ -3,524 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxy Hub | Oyun Geliştirme Araçları</title>
+    <title>RoxyWin Hub | Official | Ultimate Gaming Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #bc13fe; /* Ana Mor */
+            --primary-dark: #7a0b9e;
+            --secondary: #00f2ff; /* Neon Mavi */
+            --bg-dark: #020202;
+            --bg-light: #0d0d0d;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0c12;
-            color: #eef5ff;
-            line-height: 1.5;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        /* 🌌 Gelişmiş Mor-Siyah Arka Plan Geçişleri ve Parçacıklar */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a012a 0%, #050505 60%, #000 100%);
+            z-index: -2;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            border: none;
-            padding: 0.75rem 1.75rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-            text-decoration: none;
-            font-size: 1rem;
+        /* 💥 Parçacık Efekti (JavaScript ile canlandırılacak) */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(168, 85, 247, 0.6);
-            padding: 0.7rem 1.5rem;
-            border-radius: 2rem;
-            font-weight: 500;
-            color: #e2e8ff;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-outline:hover {
-            border-color: #a855f7;
-            background: rgba(168, 85, 247, 0.1);
-        }
-
-        .lang-btn {
-            background: rgba(168, 85, 247, 0.2);
-            border: 1px solid rgba(168, 85, 247, 0.5);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-weight: 500;
-            color: #e2e8ff;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .lang-btn:hover {
-            background: rgba(168, 85, 247, 0.4);
-            border-color: #a855f7;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
+        /* 🏠 Üst Menü (Navbar) - Tam Site Havası Verir */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
+            padding: 15px 50px;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0; width: 100%; box-sizing: border-box;
+            z-index: 100;
         }
 
-        .logo {
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: #cbd5ff;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
         }
 
-        .nav-links a:hover {
-            color: #a855f7;
+        .navbar-links {
+            display: flex;
+            gap: 20px;
         }
 
-        .hero {
-            text-align: center;
-            padding: 4rem 0 5rem;
+        .nav-item {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+        .nav-item:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 5px var(--secondary);
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #94a3d8;
-            max-width: 650px;
-            margin: 0 auto 2rem;
-        }
-
-        .single-card {
+        /* 🎬 Ana İçerik Alanı (Konteyner) */
+        .main-content {
+            flex: 1;
             display: flex;
             justify-content: center;
-            margin: 3rem 0 4rem;
-        }
-
-        .product-card {
-            background: #10131f;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            width: 380px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            transition: all 0.25s;
-            backdrop-filter: blur(2px);
-            text-align: center;
-        }
-
-        .product-card:hover {
-            border-color: #a855f7;
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-card h3 {
-            font-size: 1.9rem;
-            margin-bottom: 0.5rem;
-            color: #c084fc;
-        }
-
-        .price {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin: 1rem 0;
-            color: #e2e8ff;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin: 1rem 0 1.5rem;
-            text-align: left;
-            display: inline-block;
-        }
-
-        .feature-list li {
-            margin: 0.6rem 0;
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
+            padding-top: 100px; /* Navbar için boşluk */
+            padding-bottom: 50px;
         }
 
-        .badge {
-            background: #1e1b2f;
-            padding: 0.3rem 0.8rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #c084fc;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
-            margin: 5rem 0;
+        .container {
+            width: 90%;
+            max-width: 900px; /* Genişletildi */
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            padding: 50px;
             text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
 
-        .feature-item {
-            flex: 1;
-            min-width: 180px;
-            background: rgba(16, 19, 31, 0.6);
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+        /* Sayfa Görünümleri (Ana ve Script) */
+        .view { display: none; width: 100%; animation: fadeIn 0.6s ease; }
+        .view.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .feature-item h4 {
-            font-size: 1.3rem;
-            margin: 0.8rem 0 0.5rem;
+        /* 🏆 Başlık Tasarımı */
+        .page-header { margin-bottom: 40px; }
+        
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(188, 19, 254, 0.6));
         }
 
-        .faq-section {
-            margin: 4rem 0 5rem;
+        .page-subtitle { color: #888; font-size: 1rem; margin-top: 5px; }
+
+        /* 🚀 Grid Buton Sistemi (Tam Site Havası) */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 sütun */
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .faq-item {
-            background: #10131f;
-            margin-bottom: 1rem;
-            border-radius: 1rem;
-            border: 1px solid #1e293b;
-        }
-
-        .faq-question {
-            padding: 1.2rem 1.5rem;
-            font-weight: 600;
-            font-size: 1.1rem;
+        .btn-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
             cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .faq-question span:first-child {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
+        .btn-card:hover {
+            background: rgba(188, 19, 254, 0.08);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
         }
 
-        .faq-answer {
-            padding: 0 1.5rem 1.2rem 1.5rem;
-            color: #a0afd0;
-            border-top: 1px solid #1e293b;
-            display: none;
+        .btn-icon { font-size: 2rem; }
+        .btn-text { font-weight: 500; font-size: 1.1rem; }
+
+        /* Geri Dön Butonu */
+        .back-btn {
+            margin-top: 30px;
+            color: var(--secondary);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
         }
 
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
+        /* Altlık (Footer) */
         .footer {
             text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid #1e293b;
-            margin-top: 2rem;
-            color: #6c7aa0;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #444;
+            border-top: 1px solid var(--border);
+            background: #000;
         }
 
-        @media (max-width: 760px) {
-            .navbar {
-                flex-direction: column;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .product-card {
-                width: 100%;
-                max-width: 340px;
-            }
-            .nav-links {
-                justify-content: center;
-            }
+        /* 📱 Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .navbar-links { display: none; } /* Mobilde menüyü gizle */
+            .container { padding: 30px; }
+            .page-title { font-size: 2.5rem; }
+            .btn-grid { grid-template-columns: 1fr; } /* Mobilde tek sütun */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar">
-            <div class="logo"><span class="gradient-text">ROXY</span> HUB</div>
-            <div class="nav-links">
-                <a href="#" data-key="products">Ürünler</a>
-                <a href="#" data-key="whyus">Neden Biz</a>
-                <a href="#" data-key="faq">SSS</a>
-                <a href="#" class="btn-outline" data-key="discord">Discord</a>
-                <a href="#" class="btn-primary" data-key="start">Başlayın</a>
-                <button class="lang-btn" id="langToggle">🇬🇧 English</button>
-            </div>
-        </nav>
+    <div id="bg-canvas"></div>
+    <div class="particles" id="particles"></div>
 
-        <div class="hero">
-            <h1><span class="gradient-text">Roxy Hub</span> <span data-key="heroTitle">Best Low Price Hub</span></h1>
-            <p data-key="heroDesc">Güçlü script editörü, gelişmiş hook'lar ve kesintisiz güncellemeler.</p>
-            <a href="#" class="btn-primary" data-key="heroBtn">Hemen Keşfet →</a>
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">RoxyWin</a>
+        <div class="navbar-links">
+            <span class="nav-item" onclick="switchView('main-view')">Home</span>
+            <span class="nav-item" onclick="switchView('script-view')">Scripts</span>
+            <span class="nav-item" onclick="comingSoon('Support')">Support</span>
         </div>
+    </nav>
 
-        <div class="single-card">
-            <div class="product-card">
-                <div class="card-icon">🚀</div>
-                <h3>ROXY HUB</h3>
-                <p data-key="productDesc">Premium script editörü, tüm hook'lar ve meta desteği.</p>
-                <div class="price">$10 - $20</div>
-                <ul class="feature-list">
-                    <li>✓ <span data-key="feature1">Gelişmiş executor & editor</span></li>
-                    <li>✓ <span data-key="feature2">Tüm API hook'ları (metamod dahil)</span></li>
-                    <li>✓ <span data-key="feature3">Anlık hata ayıklama ve otomatik tamamlama</span></li>
-                    <li>✓ <span data-key="feature4">Ömür boyu güncelleme</span></li>
-                    <li>✓ <span data-key="feature5">Özel Discord desteği</span></li>
-                </ul>
-                <div class="badge" data-key="badge">En Çok Tercih Edilen</div>
+    <div class="main-content">
+        <div class="container">
+            
+            <div id="main-view" class="view active">
+                <div class="page-header">
+                    <h1 class="page-title">Welcome to the Hub</h1>
+                    <p class="page-subtitle">Your Ultimate Gateway to Gaming Exploits</p>
+                </div>
+                
+                <div class="btn-grid">
+                    <a href="https://www.youtube.com/@RoxyWinpfp" target="_blank" class="btn-card">
+                        <span class="btn-icon">📺</span>
+                        <span class="btn-text">YouTube Channel</span>
+                    </a>
+                    <div class="btn-card" onclick="switchView('script-view')">
+                        <span class="btn-icon">📜</span>
+                        <span class="btn-text">Roblox Scripts</span>
+                    </div>
+                    <div class="btn-card" onclick="comingSoon('GitHub')">
+                        <span class="btn-icon">💻</span>
+                        <span class="btn-text">GitHub (Yakında)</span>
+                    </div>
+                    <div class="btn-card" onclick="comingSoon('Discord')">
+                        <span class="btn-icon">💬</span>
+                        <span class="btn-text">Discord (Yakında)</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="features">
-            <div class="feature-item">
-                <div style="font-size:2rem;">🔒</div>
-                <h4 data-key="feat1Title">Tespit Edilmez</h4>
-                <p data-key="feat1Desc">Roxy Hub gelişmiş korumaları aşacak şekilde optimize edilmiştir.</p>
-            </div>
-            <div class="feature-item">
-                <div style="font-size:2rem;">⚡</div>
-                <h4 data-key="feat2Title">Anında Erişim</h4>
-                <p data-key="feat2Desc">Satın alım sonrası Discord üzerinden anında teslimat.</p>
-            </div>
-            <div class="feature-item">
-                <div style="font-size:2rem;">🚀</div>
-                <h4 data-key="feat3Title">Güncelleme Garantisi</h4>
-                <p data-key="feat3Desc">Oyun güncellemelerinden saatler içinde yeni sürüm.</p>
-            </div>
-            <div class="feature-item">
-                <div style="font-size:2rem;">🌟</div>
-                <h4 data-key="feat4Title">7/24 Destek</h4>
-                <p data-key="feat4Desc">Discord'da geliştirici ekibi aktif destek sağlar.</p>
-            </div>
-        </div>
+            <div id="script-view" class="view">
+                <div class="page-header">
+                    <h1 class="page-title">Script Database</h1>
+                    <p class="page-subtitle">Latest Exploits, Status: Testing</p>
+                </div>
+                
+                <div class="btn-grid">
+                    <div class="btn-card" onclick="comingSoon('TSB')">
+                        <span class="btn-icon">👊</span>
+                        <span class="btn-text">The Strongest Battlegrounds</span>
+                        <span style="font-size:0.7rem; color:#ffaa00;">[ PREPARING ]</span>
+                    </div>
+                    <div class="btn-card" onclick="comingSoon('MM2')">
+                        <span class="btn-icon">🔪</span>
+                        <span class="btn-text">Murder Mystery 2</span>
+                        <span style="font-size:0.7rem; color:#ffaa00;">[ PREPARING ]</span>
+                    </div>
+                    <div class="btn-card" onclick="comingSoon('Blade Ball')">
+                        <span class="btn-icon">⚽</span>
+                        <span class="btn-text">Blade Ball</span>
+                        <span style="font-size:0.7rem; color:#ffaa00;">[ PREPARING ]</span>
+                    </div>
+                </div>
 
-        <div class="faq-section">
-            <h2 style="font-size:2rem; text-align:center; margin-bottom:2rem;" data-key="faqTitle">Sıkça Sorulan Sorular</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>❓ <span data-key="q1">Roxy Hub’a nasıl erişirim?</span></span>
-                    <span>▼</span>
-                </div>
-                <div class="faq-answer" data-key="a1">
-                    "Başlayın" butonuna tıklayarak Discord sunucumuza katılın. Ödeme sonrası ekip üyelerimiz size indirme bağlantısını ve lisans anahtarını gönderecektir.
-                </div>
+                <div class="back-btn" onclick="switchView('main-view')">← Back to Home</div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>⚠️ <span data-key="q2">Hesap güvenliği nasıl sağlanıyor?</span></span>
-                    <span>▼</span>
-                </div>
-                <div class="faq-answer" data-key="a2">
-                    Genel olarak ban durumu yoktur, sadece admin banı vardır.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>🔄 <span data-key="q3">Güncellemeler ne kadar sürede gelir?</span></span>
-                    <span>▼</span>
-                </div>
-                <div class="faq-answer" data-key="a3">
-                    Roxy Hub ömür boyu güncelleme içerir. Genellikle her oyun güncellemesinden sonra 24 saat içinde yeni sürüm yayınlanır.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>💳 <span data-key="q4">Hangi ödeme yöntemleri geçerli?</span></span>
-                    <span>▼</span>
-                </div>
-                <div class="faq-answer" data-key="a4">
-                    Yakında
-                </div>
-            </div>
-        </div>
 
-        <div class="footer">
-            <p>© 2026 Roxy Hub</p>
         </div>
     </div>
 
+    <div class="footer">
+        © 2026 RoxyWin Hub - Design by AI - All Rights Reserved.
+    </div>
+
     <script>
-        // Dil verileri
-        const translations = {
-            tr: {
-                products: "Ürünler",
-                whyus: "Neden Biz",
-                faq: "SSS",
-                discord: "Discord",
-                start: "Başlayın",
-                heroTitle: "Best Low Price Hub",
-                heroDesc: "Güçlü script editörü, gelişmiş hook'lar ve kesintisiz güncellemeler.",
-                heroBtn: "Hemen Keşfet →",
-                productDesc: "Premium script editörü, tüm hook'lar ve meta desteği.",
-                feature1: "Gelişmiş executor & editor",
-                feature2: "Tüm API hook'ları (metamod dahil)",
-                feature3: "Anlık hata ayıklama ve otomatik tamamlama",
-                feature4: "Ömür boyu güncelleme",
-                feature5: "Özel Discord desteği",
-                badge: "En Çok Tercih Edilen",
-                feat1Title: "Tespit Edilmez",
-                feat1Desc: "Roxy Hub gelişmiş korumaları aşacak şekilde optimize edilmiştir.",
-                feat2Title: "Anında Erişim",
-                feat2Desc: "Satın alım sonrası Discord üzerinden anında teslimat.",
-                feat3Title: "Güncelleme Garantisi",
-                feat3Desc: "Oyun güncellemelerinden saatler içinde yeni sürüm.",
-                feat4Title: "7/24 Destek",
-                feat4Desc: "Discord'da geliştirici ekibi aktif destek sağlar.",
-                faqTitle: "Sıkça Sorulan Sorular",
-                q1: "Roxy Hub’a nasıl erişirim?",
-                a1: "\"Başlayın\" butonuna tıklayarak Discord sunucumuza katılın. Ödeme sonrası ekip üyelerimiz size indirme bağlantısını ve lisans anahtarını gönderecektir.",
-                q2: "Hesap güvenliği nasıl sağlanıyor?",
-                a2: "Genel olarak ban durumu yoktur, sadece admin banı vardır.",
-                q3: "Güncellemeler ne kadar sürede gelir?",
-                a3: "Roxy Hub ömür boyu güncelleme içerir. Genellikle her oyun güncellemesinden sonra 24 saat içinde yeni sürüm yayınlanır.",
-                q4: "Hangi ödeme yöntemleri geçerli?",
-                a4: "Yakında"
-            },
-            en: {
-                products: "Products",
-                whyus: "Why Us",
-                faq: "FAQ",
-                discord: "Discord",
-                start: "Get Started",
-                heroTitle: "Best Low Price Hub",
-                heroDesc: "Powerful script editor, advanced hooks, and seamless updates.",
-                heroBtn: "Explore Now →",
-                productDesc: "Premium script editor, all hooks and metamod support.",
-                feature1: "Advanced executor & editor",
-                feature2: "All API hooks (including metamod)",
-                feature3: "Real-time debugging & auto-complete",
-                feature4: "Lifetime updates",
-                feature5: "Exclusive Discord support",
-                badge: "Most Popular",
-                feat1Title: "Undetectable",
-                feat1Desc: "Roxy Hub is optimized to bypass advanced protections.",
-                feat2Title: "Instant Access",
-                feat2Desc: "Instant delivery via Discord after purchase.",
-                feat3Title: "Update Guarantee",
-                feat3Desc: "New version within hours after every game update.",
-                feat4Title: "24/7 Support",
-                feat4Desc: "Dev team actively provides support on Discord.",
-                faqTitle: "Frequently Asked Questions",
-                q1: "How do I access Roxy Hub?",
-                a1: "Click \"Get Started\" to join our Discord server. After payment, our team will send you the download link and license key.",
-                q2: "How is account security ensured?",
-                a2: "Generally, there is no ban situation, only admin ban exists.",
-                q3: "How quickly do updates come?",
-                a3: "Roxy Hub includes lifetime updates. Usually, a new version is released within 24 hours after each game update.",
-                q4: "What payment methods are accepted?",
-                a4: "Coming Soon"
-            }
-        };
-
-        let currentLang = 'tr';
-
-        function updateLanguage(lang) {
-            currentLang = lang;
-            const t = translations[lang];
-            
-            // Tüm data-key attribute'lerine sahip elementleri güncelle
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (t[key] !== undefined) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = t[key];
-                    } else {
-                        el.innerHTML = t[key];
-                    }
-                }
-            });
-            
-            // FAQ cevapları ayrıca güncellenir (data-key ile işaretli)
-            document.querySelectorAll('.faq-answer[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (t[key] !== undefined) {
-                    el.innerHTML = t[key];
-                }
-            });
-            
-            // Dil butonunun metnini güncelle
-            const langBtn = document.getElementById('langToggle');
-            if (lang === 'tr') {
-                langBtn.innerHTML = '🇬🇧 English';
-            } else {
-                langBtn.innerHTML = '🇹🇷 Türkçe';
-            }
+        // Sayfa Geçiş Sistemi
+        function switchView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
         }
 
-        // Dil değiştirme butonu
-        document.getElementById('langToggle').addEventListener('click', () => {
-            const newLang = currentLang === 'tr' ? 'en' : 'tr';
-            updateLanguage(newLang);
-        });
-
-        // Accordion işlevselliği
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const questionDiv = item.querySelector('.faq-question');
-            questionDiv.addEventListener('click', () => {
-                item.classList.toggle('active');
-                const arrow = questionDiv.querySelector('span:last-child');
-                if(item.classList.contains('active')) {
-                    arrow.innerHTML = '▲';
-                } else {
-                    arrow.innerHTML = '▼';
-                }
+        // Akıllı Uyarı Penceresi
+        function comingSoon(name) {
+            Swal.fire({
+                title: name + ' is Preparing!',
+                text: 'System is currently under development. Please check back later.',
+                icon: 'info',
+                background: '#0a0a0a',
+                color: '#fff',
+                confirmButtonColor: '#bc13fe',
+                fontFamily: 'Poppins'
             });
-        });
-        if(faqItems.length) faqItems[0].classList.add('active');
+        }
+
+        // Basit Parçacık Efekti (Arka Plan Canlandırması)
+        const particlesContainer = document.getElementById('particles');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = Math.random() * 3 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = Math.random() > 0.5 ? '#bc13fe' : '#00f2ff';
+            particle.style.borderRadius = '50%';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.opacity = Math.random() * 0.5;
+            particle.style.animation = `float ${Math.random() * 5 + 5}s linear infinite`;
+            particlesContainer.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 10000);
+        }
+
+        // Parçacık Hareketi Animasyonu
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                from { transform: translateY(0) translateX(0); opacity: 0.5; }
+                to { transform: translateY(-100px) translateX(${Math.random() * 50 - 25}px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        setInterval(createParticle, 200); // Her 200ms'de bir parçacık oluştur
     </script>
 </body>
 </html>
