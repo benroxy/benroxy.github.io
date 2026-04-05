@@ -3,164 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoxyWin | Official Gaming Hub</title>
+    <title>RoxyWin | Official Gaming Hub & Power AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
-            --primary: #bc13fe;
-            --secondary: #00f2ff;
+            --primary: #bc13fe; /* Mor */
+            --secondary: #00f2ff; /* Mavi */
+            --accent: #ff0055; /* Pembe */
             --bg: #020202;
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.08);
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
-        body {
-            margin: 0; padding: 0;
-            background-color: var(--bg);
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+        body { margin: 0; padding: 0; background-color: var(--bg); color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; cursor: none; /* Kendi imlecimizi kullanacağız */ }
 
         /* 🌌 Dinamik Arka Plan */
         .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 10% 10%, rgba(188, 19, 254, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 90% 90%, rgba(0, 242, 255, 0.15) 0%, transparent 40%);
+                radial-gradient(circle at 10% 10%, rgba(188, 19, 254, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
             z-index: -2;
         }
 
+        /* 🖱️ Fare İmleç Parçacık Canvası */
+        #cursor-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
+
         /* 📱 NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0; width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 8%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-        }
-
-        .nav-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--primary);
-            text-decoration: none;
-            text-shadow: 0 0 15px var(--primary);
-        }
-
+        .navbar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .nav-logo { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; text-shadow: 0 0 15px var(--primary); }
         .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a {
-            text-decoration: none;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85rem;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
+        .nav-links a { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--secondary); }
 
-        /* 🏔️ HERO SECTION */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+        /* 🌈 RGB FLOW & ENTRY ANIMATION */
+        @keyframes rgbFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes entry { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(3.5rem, 12vw, 8rem);
             margin: 0;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(270deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 600% 600%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 25px rgba(188, 19, 254, 0.6));
+            animation: rgbFlow 10s ease infinite, entry 2s ease-out forwards;
+            filter: drop-shadow(0 0 20px rgba(188, 19, 254, 0.4));
         }
 
-        .hero-info {
-            margin-top: 15px;
-            padding: 10px 25px;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            font-size: 1rem;
-            letter-spacing: 2px;
+        /* 🤖 POWER AI PANEL */
+        .ai-panel { position: fixed; bottom: 25px; right: 25px; width: 340px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(20px); padding: 20px; z-index: 2000; box-shadow: 0 15px 35px rgba(0,0,0,0.7); }
+        .ai-header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px; }
+        
+        .ai-avatar {
+            width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--secondary); 
+            box-shadow: 0 0 15px var(--secondary); overflow: hidden; flex-shrink: 0;
         }
+        .ai-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
+        .ai-status-container { display: flex; flex-direction: column; gap: 2px; }
+        .ai-status-dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; display: inline-block; }
+        .ai-name { font-family: 'Orbitron', sans-serif; font-weight: 900; color: var(--secondary); letter-spacing: 1px; }
+
+        .ai-message { color: #eee; font-size: 0.9rem; line-height: 1.4; font-style: italic; min-height: 45px; margin: 10px 0; }
+        .ai-wave { height: 2px; background: linear-gradient(to right, transparent, var(--primary), var(--secondary), transparent); animation: waveMove 2s infinite linear; }
+        @keyframes waveMove { 0% { opacity: 0.2; transform: scaleX(0.5); } 50% { opacity: 1; transform: scaleX(1); } 100% { opacity: 0.2; transform: scaleX(0.5); } }
+
+        /* 🏔️ HERO SECTION */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero-info { margin-top: 15px; padding: 12px 30px; background: var(--glass); border: 1px solid var(--border); border-radius: 50px; font-size: 1rem; letter-spacing: 2px; }
         .owner-tag { color: var(--secondary); font-weight: bold; }
         .admin-tag { color: var(--primary); font-weight: bold; }
-
-        .hero-btn {
-            margin-top: 40px;
-            padding: 15px 45px;
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.5s;
-            background: transparent;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-        }
+        .hero-btn { margin-top: 40px; padding: 16px 50px; border: 1px solid var(--primary); border-radius: 50px; color: white; text-decoration: none; font-weight: 900; transition: 0.5s; background: transparent; cursor: pointer; font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
         .hero-btn:hover { background: var(--primary); box-shadow: 0 0 30px var(--primary); transform: scale(1.05); }
 
         /* 📜 SCRIPTS SECTION */
         .section { padding: 100px 10%; }
-        .section-header h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; text-align: center; color: var(--secondary); }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 35px;
-            transition: 0.4s;
-            cursor: pointer;
-        }
+        .section-header h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; text-align: center; color: var(--secondary); text-transform: uppercase; letter-spacing: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 60px; }
+        .card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 40px; transition: 0.4s ease; cursor: pointer; position: relative; overflow: hidden; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: translateX(-100%); transition: 0.4s; }
+        .card:hover::before { transform: translateX(0); }
         .card:hover { border-color: var(--primary); transform: translateY(-10px); background: rgba(188, 19, 254, 0.05); }
-
-        .card h3 { margin: 0 0 10px 0; font-family: 'Orbitron', sans-serif; }
-        .card p { color: #888; font-size: 0.9rem; }
+        .card h3 { margin: 0 0 10px 0; font-family: 'Orbitron', sans-serif; color: #fff; }
+        .card p { color: #888; font-size: 0.95rem; }
 
         /* 🏆 FOOTER */
-        footer {
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            background: rgba(0,0,0,0.5);
-        }
-
-        .footer-logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; display: block; }
+        footer { padding: 80px 20px; text-align: center; border-top: 1px solid var(--border); background: rgba(0,0,0,0.8); }
+        .footer-logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; display: block; font-weight: 900; }
     </style>
 </head>
 <body>
     <div class="bg-overlay"></div>
+    <canvas id="cursor-canvas"></canvas>
+
+    <div class="ai-panel" id="power-ai">
+        <div class="ai-header">
+            <div class="ai-avatar">
+                <img src="./ai-icon.jpg" alt="Power AI" onerror="this.src='https://i.pinimg.com/originals/0c/a1/d6/0ca1d6fb3a5716e25f187a0c0032e570.gif'">
+            </div>
+            <div class="ai-status-container">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="ai-status-dot"></span>
+                    <span class="ai-name">POWER AI</span>
+                </div>
+                <div style="font-size: 0.7rem; color: #555; font-weight: bold;">SYSTEM ONLINE</div>
+            </div>
+        </div>
+        <p class="ai-message" id="ai-text"></p>
+        <div class="ai-wave"></div>
+    </div>
 
     <nav class="navbar">
         <a href="#" class="nav-logo">ROXYWIN</a>
         <div class="nav-links">
             <a href="#scripts">Scripts</a>
-            <a href="#about" onclick="comingSoon('About')">About</a>
             <a href="https://www.youtube.com/@RoxyWinpfp" target="_blank">YouTube</a>
-            <a href="#" style="background: var(--primary); color: white; padding: 8px 15px; border-radius: 5px; font-weight: bold;" onclick="comingSoon('Login')">LOGIN</a>
+            <a href="#" style="background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; font-weight: 900;" onclick="comingSoon('Support')">SUPPORT</a>
         </div>
     </nav>
 
@@ -169,55 +131,120 @@
         <div class="hero-info">
             <span class="owner-tag">OWNER:</span> BenRoxy | <span class="admin-tag">ADMIN:</span> Yua
         </div>
-        <button class="hero-btn" onclick="document.getElementById('scripts').scrollIntoView()">EXPLORE HUB</button>
+        <button class="hero-btn" onclick="document.getElementById('scripts').scrollIntoView()">ENTER PORTAL</button>
     </section>
 
     <section id="scripts" class="section">
         <div class="section-header">
-            <h2>SCRIPT PROJECTS</h2>
+            <h2>GAMES & EXPLOITS</h2>
         </div>
         <div class="grid">
             <div class="card" onclick="comingSoon('TSB')">
                 <h3>Strongest B.G.</h3>
                 <p>Advanced combat logic and auto-farm systems.</p>
-                <div style="color: #ffaa00; font-weight: bold; font-size: 0.7rem; margin-top: 10px;">[ PATCHING ]</div>
+                <div style="color: #ffaa00; font-weight: bold; font-size: 0.75rem; margin-top: 15px;">[ STATUS: PATCHING ]</div>
             </div>
             <div class="card" onclick="comingSoon('MM2')">
                 <h3>Murder Mystery 2</h3>
                 <p>Enhanced visual ESP and silent aim features.</p>
-                <div style="color: #00ff88; font-weight: bold; font-size: 0.7rem; margin-top: 10px;">[ ONLINE ]</div>
+                <div style="color: #00ff88; font-weight: bold; font-size: 0.75rem; margin-top: 15px;">[ STATUS: ONLINE ]</div>
             </div>
             <div class="card" onclick="comingSoon('Blade Ball')">
                 <h3>Blade Ball</h3>
                 <p>Custom auto-parry with minimal latency.</p>
-                <div style="color: #bc13fe; font-weight: bold; font-size: 0.7rem; margin-top: 10px;">[ UPDATING ]</div>
+                <div style="color: var(--primary); font-weight: bold; font-size: 0.75rem; margin-top: 15px;">[ STATUS: UPDATING ]</div>
             </div>
         </div>
     </section>
 
     <footer>
         <span class="footer-logo">ROXYWIN HUB</span>
-        <p style="color: #666; font-size: 0.8rem;">
-            Founder: <span style="color: var(--secondary);">BenRoxy</span> | Staff: <span style="color: var(--primary);">Yua</span>
+        <p style="color: #888; font-size: 0.9rem; letter-spacing: 1px;">
+            FOUNDER: <span style="color: var(--secondary); font-weight: 900;">BENROXY</span> | STAFF: <span style="color: var(--primary); font-weight: 900;">YUA</span>
         </p>
-        <p style="color: #444; font-size: 0.7rem; margin-top: 20px;">
-            © 2026 ROXYWIN. All Rights Reserved. Not affiliated with Roblox Corp.
+        <p style="color: #444; font-size: 0.75rem; margin-top: 30px; text-transform: uppercase;">
+            © 2026 RoxyWin Hub - Designed by BenRoxy
         </p>
     </footer>
 
     <script>
+        // --- 🤖 POWER AI YAZI SİSTEMİ ---
+        const aiText = document.getElementById('ai-text');
+        const mainMessage = "Beni yok mu sandınız? Ben olmadan RoxyHub olmaz!";
+        
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                aiText.innerHTML = text.substring(0, i + 1) + '<span style="color:var(--secondary);">|</span>';
+                setTimeout(() => typeWriter(text, i + 1), 60);
+            } else {
+                aiText.innerHTML = text; // İmleci kaldır
+            }
+        }
+
+        // Sayfa yüklendikten 1 saniye sonra yazmaya başla
+        window.onload = () => setTimeout(() => typeWriter(mainMessage, 0), 1000);
+
+        // --- 🖱️ FARE İMLEÇ PARÇACIK EFEKTİ ---
+        const canvas = document.getElementById('cursor-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.onresize = resize;
+        resize();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.color = Math.random() > 0.5 ? '#bc13fe' : '#00f2ff';
+                this.opacity = 1;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                this.opacity -= 0.02;
+                if (this.size > 0.1) this.size -= 0.05;
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            for (let i = 0; i < 4; i++) particles.push(new Particle(e.x, e.y));
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => {
+                p.update(); p.draw();
+                if (p.opacity <= 0) particles.splice(i, 1);
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- DİĞER FONKSİYONLAR ---
         function comingSoon(name) {
             Swal.fire({
-                title: name + ' System',
-                text: 'This section is being managed by BenRoxy & Yua. Please wait for the update.',
+                title: name,
+                text: 'System managed by BenRoxy & Yua. Preparing for update...',
                 icon: 'info',
                 background: '#0a0a0a',
                 color: '#fff',
                 confirmButtonColor: '#bc13fe'
             });
         }
-
-        console.log("%c ROXYWIN HUB | OWNER: BenRoxy | ADMIN: Yua ", "background: #bc13fe; color: #fff; font-size: 16px; padding: 10px;");
+        console.log("%c ROXYWIN HUB | DEVELOPED BY BENROXY ", "background: #bc13fe; color: #fff; font-size: 20px; font-weight: bold; padding: 10px;");
     </script>
 </body>
 </html>
